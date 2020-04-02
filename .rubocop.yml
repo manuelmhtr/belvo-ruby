@@ -1,0 +1,7 @@
+require: rubocop-rspec
+
+RSpec/ExampleLength:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 15

@@ -1,4 +1,6 @@
-require "belvo/version"
+# frozen_string_literal: true
+
+require 'belvo/version'
 
 module Belvo
   class Error < StandardError; end

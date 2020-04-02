@@ -1,39 +1,41 @@
-require "faraday"
-require "faraday_middleware"
-require "typhoeus"
-require "typhoeus/adapters/faraday"
+# frozen_string_literal: true
 
-require "belvo/version"
-require "belvo/exceptions"
+require 'faraday'
+require 'faraday_middleware'
+require 'typhoeus'
+require 'typhoeus/adapters/faraday'
+
+require 'belvo/version'
+require 'belvo/exceptions'
 
 module Belvo
+  # Describes a Belvo API session
   class APISession
     def initialize(url)
-      @url = "%s/api/" % [url]
+      @url = format('%<url>s/api/', url: url)
       @session = Faraday::Connection.new(url: @url) do |faraday|
         faraday.adapter :typhoeus
         faraday.response :json
         faraday.headers = {
-          "Content-Type" => "application/json",
-          "User-Agent" => "belvo-ruby (%s)" % [Belvo::VERSION],
+          'Content-Type' => 'application/json',
+          'User-Agent' => format(
+            'belvo-ruby (%<version>s)',
+            version: Belvo::VERSION
+          )
         }
       end
     end
 
     private
 
-    def key_id=(secret_key_id)
-      @key_id = secret_key_id
-    end
+    attr_writer :key_id
 
-    def key_password=(secret_key_password)
-      @key_password = secret_key_password
-    end
+    attr_writer :key_password
 
     def raise_for_status(response)
       unless response.success?
         raise RequestError.new(
-          "Request error",
+          'Request error',
           response.status,
           response.body.to_s
         )
@@ -43,14 +45,12 @@ module Belvo
 
     def authenticate
       @session.basic_auth(@key_id, @key_password)
-      response = @session.get("")
+      response = @session.get('')
       response.success?
     end
 
     def get(path, params = nil)
-      if params.nil?
-        params = {}
-      end
+      params = {} if params.nil?
 
       response = @session.get(path, params)
 
@@ -67,32 +67,24 @@ module Belvo
     end
 
     def list(path, params = nil)
-      if params.nil?
-        params = {}
-      end
-
-      while true
-        response = get(path, params)
-        results = response.body["results"]
-        results.each do |item|
+      params = {} if params.nil?
+      loop do
+        response = get(path, params: params)
+        response.body['results'].each do |item|
           yield item
         end
 
-        if response.body["next"]
-          path = response.body["next"]
-          params = nil
-        else
-          break
-        end
+        break unless response.body['next']
+
+        path = response.body['next']
+        params = nil
       end
     end
 
     def detail(path, id, params = nil)
-      if params.nil?
-        params = {}
-      end
+      params = {} if params.nil?
 
-      resource_path = "%s%s/" % [path, id]
+      resource_path = format('%<path>s%<id>s/', path: path, id: id)
       response = get(resource_path, params)
 
       raise_for_status response
@@ -100,20 +92,20 @@ module Belvo
     end
 
     def post(path, data)
-      response = @session.post(path, body = data)
+      response = @session.post(path, data)
       raise_for_status response
       response.body
     end
 
     def patch(path, data)
-      response = @session.patch(path, body = data)
+      response = @session.patch(path, data)
       raise_for_status response
       response.body
     end
 
     def delete(path, id)
-      resource_url = "%s%s/" % [path, id]
-      response = @session.delete(resource_url)
+      resource_path = format('%<path>s%<id>s/', path: path, id: id)
+      response = @session.delete(resource_path)
       response.success?
     end
   end
