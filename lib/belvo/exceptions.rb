@@ -1,5 +1,11 @@
 module Belvo
-  class RequestError < StandardError
+  class BelvoAPIError < StandardError
+    def initialize(message)
+      super(message)
+    end
+  end
+
+  class RequestError < BelvoAPIError
     attr_reader :status_code, :detail
 
     def initialize(message, status_code, detail)

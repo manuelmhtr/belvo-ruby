@@ -14,8 +14,8 @@ module Belvo
         faraday.adapter :typhoeus
         faraday.response :json
         faraday.headers = {
-            "Content-Type" => "application/json",
-            "User-Agent" => "belvo-ruby (%s)" % [Belvo::VERSION]
+          "Content-Type" => "application/json",
+          "User-Agent" => "belvo-ruby (%s)" % [Belvo::VERSION],
         }
       end
     end
@@ -33,9 +33,9 @@ module Belvo
     def raise_for_status(response)
       unless response.success?
         raise RequestError.new(
-            "Request error",
-            response.status,
-            response.body.to_s
+          "Request error",
+          response.status,
+          response.body.to_s
         )
       end
       response
@@ -43,16 +43,11 @@ module Belvo
 
     def authenticate
       @session.basic_auth(@key_id, @key_password)
-
-      response = @session.get("") do |req|
-        req.options
-      end
-      raise_for_status response
-
-      true
+      response = @session.get("")
+      response.success?
     end
 
-    def get(path, params=nil)
+    def get(path, params = nil)
       if params.nil?
         params = {}
       end
@@ -71,7 +66,7 @@ module Belvo
       authenticate
     end
 
-    def list(path, params=nil)
+    def list(path, params = nil)
       if params.nil?
         params = {}
       end
@@ -92,7 +87,7 @@ module Belvo
       end
     end
 
-    def detail(path, id, params=nil)
+    def detail(path, id, params = nil)
       if params.nil?
         params = {}
       end
@@ -105,13 +100,13 @@ module Belvo
     end
 
     def post(path, data)
-      response = @session.post(path, body=data)
+      response = @session.post(path, body = data)
       raise_for_status response
       response.body
     end
 
     def patch(path, data)
-      response = @session.patch(path, body=data)
+      response = @session.patch(path, body = data)
       raise_for_status response
       response.body
     end

@@ -1,6 +1,9 @@
 require "bundler/setup"
+require "webmock/rspec"
 require "belvo"
 require "belvo/http"
+require "belvo/client"
+require "belvo/exceptions"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
