@@ -9,10 +9,9 @@ RSpec.describe Belvo::Link do
     { id: 'some-id', access_mode: 'recurrent', status: 'valid' }
   end
 
-  def mock_login_ok
-    WebMock.stub_request(:get, 'http://fake.api/api/').with(
-      basic_auth: %w[foo bar]
-    ).to_return(status: 200)
+  let(:links) do
+    client = Belvo::Client.new('foo', 'bar', 'http://fake.api')
+    described_class.new(client.session)
   end
 
   def mock_empty_links_list
@@ -31,7 +30,7 @@ RSpec.describe Belvo::Link do
       basic_auth: %w[foo bar]
     ).to_return(
       status: 201,
-      body: { id: 'some-id', access_mode: 'single', status: 'valid' }.to_json
+      body: single_link_resp.to_json
     ).with(
       body: {
         institution: 'bank',
@@ -48,7 +47,7 @@ RSpec.describe Belvo::Link do
       basic_auth: %w[foo bar]
     ).to_return(
       status: 201,
-      body: { id: 'some-id', access_mode: 'recurrent', status: 'valid' }.to_json
+      body: recurrent_link_resp.to_json
     ).with(
       body: {
         institution: 'bank',
@@ -76,24 +75,18 @@ RSpec.describe Belvo::Link do
 
   it 'can list links' do
     mock_empty_links_list
-    client = Belvo::Client.new('foo', 'bar', 'http://fake.api')
-    links = described_class.new(client.session)
     expect(links.list.length).to eq(1)
   end
 
   it 'can create a link' do
     mock_post_single_link_ok
-    client = Belvo::Client.new('foo', 'bar', 'http://fake.api')
-    links = described_class.new(client.session)
     expect(
       links.create(institution: 'bank', username: 'janedoe', password: 'secret')
-    ).to eq(single_link_resp.transform_keys!(&:to_s))
+    ).to eq(single_link_resp.transform_keys(&:to_s))
   end
 
   it 'can create a recurrent link' do
     mock_post_recurrent_link_ok
-    client = Belvo::Client.new('foo', 'bar', 'http://fake.api')
-    links = described_class.new(client.session)
     expect(
       links.create(
         institution: 'bank',
@@ -101,19 +94,17 @@ RSpec.describe Belvo::Link do
         password: 'secret',
         options: { access_mode: AccessMode::RECURRENT }
       )
-    ).to eq(recurrent_link_resp.transform_keys!(&:to_s))
+    ).to eq(recurrent_link_resp.transform_keys(&:to_s))
   end
 
   it 'can update an existing link' do
     mock_put_encryption_key_ok
-    client = Belvo::Client.new('foo', 'bar', 'http://fake.api')
-    links = described_class.new(client.session)
     expect(
       links.update(
         id: 'some-id',
         password: 'secret',
         options: { encryption_key: 'this-is-so-secret' }
       )
-    ).to eq(single_link_resp.transform_keys!(&:to_s))
+    ).to eq(single_link_resp.transform_keys(&:to_s))
   end
 end

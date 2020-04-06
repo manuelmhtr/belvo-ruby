@@ -86,4 +86,33 @@ module Belvo
       @session.put(@endpoint, id, body)
     end
   end
+
+  # Contains the configurable properties for an Account
+  class AccountOptions < Faraday::Options.new(
+    :save_data,
+    :token,
+    :encryption_key
+  )
+  end
+
+  # An Account is the representation of a bank account inside a financial
+  # institution.
+  class Account < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'accounts/'
+    end
+
+    def create(link:, options: nil)
+      options = AccountOptions.from(options)
+      body = {
+        link: link,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
 end
