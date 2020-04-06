@@ -1,7 +1,11 @@
 require: rubocop-rspec
 
 RSpec/ExampleLength:
-  Max: 10
+  Max: 20
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'

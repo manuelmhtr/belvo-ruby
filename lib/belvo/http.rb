@@ -51,9 +51,9 @@ module Belvo
 
     def get(path, params = nil)
       params = {} if params.nil?
-
-      response = @session.get(path, params)
-
+      response = @session.get(path) do |req|
+        req.params = params
+      end
       raise_for_status response
     end
 
@@ -71,7 +71,7 @@ module Belvo
       loop do
         response = get(path, params: params)
         response.body['results'].each do |item|
-          yield item
+          yield item if block_given?
         end
 
         break unless response.body['next']
@@ -92,13 +92,20 @@ module Belvo
     end
 
     def post(path, data)
-      response = @session.post(path, data)
+      response = @session.post(path, data.to_json)
+      raise_for_status response
+      response.body
+    end
+
+    def put(path, id, data)
+      url = format('%<path>s%<id>s/', path: path, id: id)
+      response = @session.put(url, data.to_json)
       raise_for_status response
       response.body
     end
 
     def patch(path, data)
-      response = @session.patch(path, data)
+      response = @session.patch(path, data.to_json)
       raise_for_status response
       response.body
     end

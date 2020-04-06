@@ -5,6 +5,7 @@ require 'webmock/rspec'
 require 'belvo'
 require 'belvo/http'
 require 'belvo/client'
+require 'belvo/resources'
 require 'belvo/exceptions'
 
 RSpec.configure do |config|

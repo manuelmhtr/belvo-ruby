@@ -15,4 +15,14 @@ RSpec.describe Belvo::Client do
       described_class.new('foo', 'bar', 'http://fake.api')
     end.to raise_error(Belvo::BelvoAPIError, 'Login failed.')
   end
+
+  it 'can login when credentials are correct' do
+    WebMock.stub_request(:get, 'http://fake.api/api/').with(
+      basic_auth: %w[foo bar]
+    ).to_return(status: 200)
+
+    expect do
+      described_class.new('foo', 'bar', 'http://fake.api')
+    end.not_to raise_error
+  end
 end
