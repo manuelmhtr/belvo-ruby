@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'date'
 require 'faraday/options'
 
 module AccessMode
@@ -108,6 +109,41 @@ module Belvo
       body = {
         link: link,
         token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
+  # Contains configurable properties for a Transaction
+  class TransactionOptions < Faraday::Options.new(
+    :date_to,
+    :account,
+    :token,
+    :encryption_key,
+    :save_data
+  )
+  end
+
+  # A Transaction contains the detailed information of each movement inside an
+  # Account.
+  class Transaction < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'transactions/'
+    end
+
+    def create(link:, date_from:, options: nil)
+      options = TransactionOptions.from(options)
+      date_to = options.date_to || Date.today.to_s
+      body = {
+        link: link,
+        date_from: date_from,
+        date_to: date_to,
+        token: options.token,
+        account: options.account,
         encryption_key: options.encryption_key,
         save_data: options.save_data || true
       }.merge(options)

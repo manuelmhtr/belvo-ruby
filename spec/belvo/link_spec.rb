@@ -27,17 +27,16 @@ RSpec.describe Belvo::Link do
   def mock_post_single_link_ok
     mock_login_ok
     WebMock.stub_request(:post, 'http://fake.api/api/links/').with(
-      basic_auth: %w[foo bar]
-    ).to_return(
-      status: 201,
-      body: single_link_resp.to_json
-    ).with(
+      basic_auth: %w[foo bar],
       body: {
         institution: 'bank',
         username: 'janedoe',
         password: 'secret',
         access_mode: 'single'
       }
+    ).to_return(
+      status: 201,
+      body: single_link_resp.to_json
     )
   end
 

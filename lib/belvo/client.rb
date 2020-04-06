@@ -7,7 +7,7 @@ require 'belvo/resources'
 module Belvo
   # Belvo API HTTP client
   class Client
-    attr_reader :session, :links, :accounts
+    attr_reader :session, :links, :accounts, :transactions
 
     def initialize(secret_key_id, secret_key_password, url = nil)
       (belvo_api_url = url) || ENV['BELVO_API_URL']
@@ -21,6 +21,7 @@ module Belvo
 
       @links = Link.new @session
       @accounts = Account.new @session
+      @transactions = Transaction.new @session
     end
   end
 end
