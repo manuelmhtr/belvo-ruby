@@ -22,6 +22,7 @@ module Belvo
       @links = Link.new @session
       @accounts = Account.new @session
       @transactions = Transaction.new @session
+      @owners = Owner.new @session
     end
   end
 end

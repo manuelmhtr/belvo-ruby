@@ -151,4 +151,29 @@ module Belvo
       @session.post(@endpoint, body)
     end
   end
+
+  # Contains configurable properties of an Owner
+  class OwnerOptions < Faraday::Options.new(:token, :encryption_key, :save_data)
+  end
+
+  # An Owner represents the person who has access to a Link and is the owner
+  # of all the Accounts inside the Link
+  class Owner < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'owners/'
+    end
+
+    def create(link:, options: nil)
+      options = OwnerOptions.from(options)
+      body = {
+        link: link,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
 end
