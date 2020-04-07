@@ -243,4 +243,39 @@ module Belvo
       @session.post(@endpoint, body)
     end
   end
+
+  # Contains configurable properties of an Invoice
+  class InvoiceOptions < Faraday::Options.new(
+    :token,
+    :encryption_key,
+    :save_data,
+    :attach_xml
+  )
+  end
+
+  # An Invoice is the representation of an electronic invoice, that can be
+  # received or sent, by a business or an individual and has been uploaded
+  # to the fiscal institution website
+  class Invoice < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'invoices/'
+    end
+
+    def create(link:, date_from:, date_to:, type:, options: nil)
+      options = InvoiceOptions.from(options)
+      body = {
+        link: link,
+        date_from: date_from,
+        date_to: date_to,
+        type: type,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true,
+        attach_xml: options.attach_xml
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
 end
