@@ -210,4 +210,37 @@ module Belvo
       @session.post(@endpoint, body)
     end
   end
+
+  # Contains configurable properties of a Statement
+  class StatementOptions < Faraday::Options.new(
+    :token,
+    :encryption_key,
+    :save_data,
+    :attach_pdf
+  )
+  end
+
+  # A Statement contains a resume of monthly Transactions inside an Account.
+  class Statement < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'statements/'
+    end
+
+    def create(link:, account:, year:, month:, options: nil)
+      options = StatementOptions.from(options)
+      body = {
+        link: link,
+        account: account,
+        year: year,
+        month: month,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true,
+        attach_pdf: options.attach_pdf
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
 end

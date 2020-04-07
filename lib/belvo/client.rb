@@ -24,6 +24,7 @@ module Belvo
       @transactions = Transaction.new @session
       @owners = Owner.new @session
       @balances = Balance.new @session
+      @statements = Statement.new @session
     end
   end
 end
