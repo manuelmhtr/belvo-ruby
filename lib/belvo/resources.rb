@@ -176,4 +176,38 @@ module Belvo
       @session.post(@endpoint, body)
     end
   end
+
+  # Contains configurable properties of a Balance
+  class BalanceOptions < Faraday::Options.new(
+    :token,
+    :date_to,
+    :account,
+    :encryption_key,
+    :save_data
+  )
+  end
+
+  # A Balance represents the financial status of an Account at a given time.
+  class Balance < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'balances/'
+    end
+
+    def create(link:, date_from:, options: nil)
+      options = BalanceOptions.from(options)
+      date_to = options.date_to || Date.today.to_s
+      body = {
+        link: link,
+        date_from: date_from,
+        date_to: date_to,
+        token: options.token,
+        account: options.account,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
 end
