@@ -2,13 +2,19 @@
 
 require 'coveralls'
 require 'bundler/setup'
+require 'simplecov'
 require 'webmock/rspec'
+
+SimpleCov.start do
+  add_filter '/spec/'
+end
+
+Coveralls.wear!
+
 require 'belvo'
 require 'belvo/http'
 require 'belvo/resources'
 require 'belvo/exceptions'
-
-Coveralls.wear!
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
