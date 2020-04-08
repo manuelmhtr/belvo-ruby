@@ -36,7 +36,7 @@ belvo = Belvo::Client.new(
 )
 
 begin
-  new_link = belvo.links.retrieve(
+  new_link = belvo.links.register(
     institution: 'banamex_mx_retail', 
     username: 'janedoe', 
     password: 'super-secret'
