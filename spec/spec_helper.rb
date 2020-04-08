@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+require 'coveralls'
 require 'bundler/setup'
 require 'webmock/rspec'
 require 'belvo'
 require 'belvo/http'
 require 'belvo/resources'
 require 'belvo/exceptions'
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
