@@ -52,14 +52,14 @@ RSpec.describe Belvo::Owner do
   it 'can create' do
     mock_create_ok
     expect(
-      owners.create(link: 'some-link-uuid')
+      owners.retrieve(link: 'some-link-uuid')
     ).to eq(owner_resp.transform_keys(&:to_s))
   end
 
   it 'can change options when creating' do
     mock_create_with_options
     expect(
-      owners.create(
+      owners.retrieve(
         link: 'some-link-uuid',
         options: {
           token: 'a-token',

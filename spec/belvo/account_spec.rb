@@ -47,14 +47,14 @@ RSpec.describe Belvo::Account do
   it 'can create accounts' do
     mock_create_accounts_ok
     expect(
-      accounts.create(link: 'some-link-uuid')
+      accounts.retrieve(link: 'some-link-uuid')
     ).to eq(account_resp.transform_keys(&:to_s))
   end
 
   it 'can get an account detail' do
     mock_get_account_ok
     expect(
-      accounts.detail('some-account-uuid')
+      accounts.detail(id: 'some-account-uuid')
     ).to eq(account_resp.transform_keys(&:to_s))
   end
 end

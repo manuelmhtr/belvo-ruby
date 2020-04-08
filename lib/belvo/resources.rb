@@ -3,39 +3,55 @@
 require 'date'
 require 'belvo/options'
 
-module AccessMode
-  SINGLE = 'single'
-  RECURRENT = 'recurrent'
-end
-
 module Belvo
   # Represents a consumable REST resource from Belvo API
   class Resource
+    # Resource API endpoint
+    # @return [String] the API endpoint
     attr_reader :endpoint
 
+    # @param session [APISession] current Belvo API session
     def initialize(session)
       @session = session
     end
 
+    # Remove nil values from a request body
+    # @param body [Hash] request body
+    # @return [Hash] body without nil values
     def clean(body:)
       body.delete_if { |_key, value| value.nil? }
     end
 
+    # List all results
+    # @return [Array]
+    # @raise [RequestError] If response code is different than 2XX
     def list
       results = []
       @session.list(@endpoint) { |item| results.push item }
       results
     end
 
-    def detail(id)
+    # Show specific resource details
+    # @param id [String] Resource UUID
+    # @return [Hash]
+    # @raise [RequestError] If response code is different than 2XX
+    def detail(id:)
       @session.detail(@endpoint, id)
     end
 
-    def delete(id)
+    # Delete existing resource
+    # @param id [String] Resource UUID
+    # @return [Boolean] true if resource is successfully deleted else false
+    def delete(id:)
       @session.delete(@endpoint, id)
     end
 
-    def resume(session_id, token, link = nil)
+    # Resume data extraction session. Use this method after you have received a
+    #   HTTP 428 response.
+    # @param session_id [String] Session UUID included in the 428 response
+    # @param link [String, nil] Link UUID
+    # @raise [RequestError] If response code is different than 2XX
+    def resume(session_id:, token:, link: nil)
       data = { session: session_id, token: token, link: link }
       @session.patch(@endpoint, data)
     end
@@ -43,12 +59,33 @@ module Belvo
 
   # A Link is a set of credentials associated to a end-user access
   class Link < Resource
+    class AccessMode
+      # Use single to do ad hoc one-time requests
+      SINGLE = 'single'
+      # Use recurrent to have Belvo refresh your link data on a daily basis
+      RECURRENT = 'recurrent'
+    end
+
     def initialize(session)
       super(session)
       @endpoint = 'links/'
     end
 
-    def create(institution:, username:, password:, password2: nil, options: nil)
+    # Register a new link
+    # @param institution [String] Institution name
+    # @param username [String] End-user username
+    # @param password [String] End-user password
+    # @param password2 [String, nil] End-user secondary password, if any
+    # @param options [LinkOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def register(
+      institution:,
+      username:,
+      password:,
+      password2: nil,
+      options: nil
+    )
       options = LinkOptions.from(options)
       body = {
         institution: institution,
@@ -63,10 +100,13 @@ module Belvo
       @session.post(@endpoint, body)
     end
 
-    def delete(id:)
-      @session.delete(@endpoint, id)
-    end
-
+    # Allows to change password, password2 or setting a custom encryption key
+    # @param id [String] Link UUID
+    # @param password [String] End-user password
+    # @param password2 [String, nil] End-user secondary password, if any
+    # @param options [LinkOptions] Configurable properties
+    # @return [Hash] link details
+    # @raise [RequestError] If response code is different than 2XX
     def update(id:, password:, password2: nil, options: nil)
       options = LinkOptions.from(options)
       body = {
@@ -88,7 +128,12 @@ module Belvo
       @endpoint = 'accounts/'
     end
 
-    def create(link:, options: nil)
+    # Retrieve accounts from an existing link
+    # @param link [String] Link UUID
+    # @param options [AccountOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
       options = AccountOptions.from(options)
       body = {
         link: link,
@@ -109,7 +154,13 @@ module Belvo
       @endpoint = 'transactions/'
     end
 
-    def create(link:, date_from:, options: nil)
+    # Retrieve transactions from an existing link
+    # @param link [String] Link UUID
+    # @param date_from [String] Date string (YYYY-MM-DD)
+    # @param options [TransactionOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, date_from:, options: nil)
       options = TransactionOptions.from(options)
       date_to = options.date_to || Date.today.to_s
       body = {
@@ -134,7 +185,12 @@ module Belvo
       @endpoint = 'owners/'
     end
 
-    def create(link:, options: nil)
+    # Retrieve owners from an existing link
+    # @param link [String] Link UUID
+    # @param options [OwnerOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
       options = OwnerOptions.from(options)
       body = {
         link: link,
@@ -154,7 +210,14 @@ module Belvo
       @endpoint = 'balances/'
     end
 
-    def create(link:, date_from:, options: nil)
+    # Retrieve balances from a specific account or all accounts from a
+    #   specific link
+    # @param link [String] Link UUID
+    # @param date_from [String] Date string (YYYY-MM-DD)
+    # @param options [BalanceOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, date_from:, options: nil)
       options = BalanceOptions.from(options)
       date_to = options.date_to || Date.today.to_s
       body = {
@@ -178,7 +241,14 @@ module Belvo
       @endpoint = 'statements/'
     end
 
-    def create(link:, account:, year:, month:, options: nil)
+    # Retrieve statements information from a specific banking link.
+    # @param link [String] Link UUID
+    # @param year [Integer]
+    # @param month [Integer]
+    # @param options [StatementOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, account:, year:, month:, options: nil)
       options = StatementOptions.from(options)
       body = {
         link: link,
@@ -204,7 +274,13 @@ module Belvo
       @endpoint = 'invoices/'
     end
 
-    def create(link:, date_from:, date_to:, type:, options: nil)
+    # @param link [String] Link UUID
+    # @param date_from [String] Date string (YYYY-MM-DD)
+    # @param date_to [String] Date string (YYYY-MM-DD)
+    # @param options [InvoiceOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, date_from:, date_to:, type:, options: nil)
       options = InvoiceOptions.from(options)
       body = {
         link: link,
@@ -229,7 +305,14 @@ module Belvo
       @endpoint = 'tax-returns/'
     end
 
-    def create(link:, year_from:, year_to:, options: nil)
+    # Retrieve tax returns information from a specific fiscal link.
+    # @param link [String] Link UUID
+    # @param year_from [Integer]
+    # @param year_to [Integer]
+    # @param options [TaxReturnOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, year_from:, year_to:, options: nil)
       options = TaxReturnOptions.from(options)
       body = {
         link: link,

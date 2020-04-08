@@ -61,14 +61,14 @@ RSpec.describe Belvo::Balance do
   it 'can create' do
     mock_create_ok
     expect(
-      balances.create(link: 'some-link-uuid', date_from: '2020-01-01')
+      balances.retrieve(link: 'some-link-uuid', date_from: '2020-01-01')
     ).to eq(balance_resp.transform_keys(&:to_s))
   end
 
   it 'can change options when creating' do
     mock_create_with_options
     expect(
-      balances.create(
+      balances.retrieve(
         link: 'some-link-uuid',
         date_from: '2020-01-01',
         options: {

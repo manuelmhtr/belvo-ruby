@@ -76,7 +76,7 @@ RSpec.describe Belvo::Statement do
   it 'can create' do
     mock_create_ok
     expect(
-      statements.create(
+      statements.retrieve(
         link: 'some-link-uuid',
         account: 'some-account-uuid',
         year: 2020,
@@ -88,7 +88,7 @@ RSpec.describe Belvo::Statement do
   it 'can change options when creating' do
     mock_create_with_options
     expect(
-      statements.create(
+      statements.retrieve(
         link: 'some-link-uuid',
         account: 'some-account-uuid',
         year: 2020,

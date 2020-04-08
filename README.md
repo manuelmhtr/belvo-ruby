@@ -35,13 +35,13 @@ belvo = Belvo::Client.new(
 )
 
 begin
-  new_link = belvo.links.create(
+  new_link = belvo.links.retrieve(
     institution: 'banamex_mx_retail', 
     username: 'janedoe', 
     password: 'super-secret'
   )
 
-  belvo.accounts.create(link: new_link['id'])
+  belvo.accounts.retrieve(link: new_link['id'])
 
   puts belvo.accounts.list
 rescue Belvo::RequestError => e

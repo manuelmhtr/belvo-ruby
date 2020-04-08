@@ -80,18 +80,22 @@ RSpec.describe Belvo::Link do
   it 'can create a link' do
     mock_post_single_link_ok
     expect(
-      links.create(institution: 'bank', username: 'janedoe', password: 'secret')
+      links.register(
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret'
+      )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end
 
   it 'can create a recurrent link' do
     mock_post_recurrent_link_ok
     expect(
-      links.create(
+      links.register(
         institution: 'bank',
         username: 'janedoe',
         password: 'secret',
-        options: { access_mode: AccessMode::RECURRENT }
+        options: { access_mode: described_class::AccessMode::RECURRENT }
       )
     ).to eq(recurrent_link_resp.transform_keys(&:to_s))
   end

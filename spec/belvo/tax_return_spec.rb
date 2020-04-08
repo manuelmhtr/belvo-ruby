@@ -51,7 +51,7 @@ RSpec.describe Belvo::TaxReturn do
   it 'can create' do
     mock_create_ok
     expect(
-      tax_returns.create(
+      tax_returns.retrieve(
         link: 'some-link-uuid',
         year_from: 2019,
         year_to: 2020
@@ -62,7 +62,7 @@ RSpec.describe Belvo::TaxReturn do
   it 'can change options when creating' do
     mock_create_with_options
     expect(
-      tax_returns.create(
+      tax_returns.retrieve(
         link: 'some-link-uuid',
         year_from: 2019,
         year_to: 2020,

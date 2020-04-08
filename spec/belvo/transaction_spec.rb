@@ -46,14 +46,14 @@ RSpec.describe Belvo::Transaction do
   it 'can create transactions' do
     mock_create_ok
     expect(
-      transactions.create(link: 'some-link-uuid', date_from: '2020-01-01')
+      transactions.retrieve(link: 'some-link-uuid', date_from: '2020-01-01')
     ).to eq(transaction_resp.transform_keys(&:to_s))
   end
 
   it 'can change transaction options when creating' do
     mock_create_with_options
     expect(
-      transactions.create(
+      transactions.retrieve(
         link: 'some-link-uuid',
         date_from: '2020-01-01',
         options: {

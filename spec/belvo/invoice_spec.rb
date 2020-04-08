@@ -92,7 +92,7 @@ RSpec.describe Belvo::Invoice do
   it 'can create' do
     mock_create_ok
     expect(
-      invoices.create(
+      invoices.retrieve(
         link: 'some-link-uuid',
         date_from: '2020-01-20',
         date_to: '2020-01-31',
@@ -104,7 +104,7 @@ RSpec.describe Belvo::Invoice do
   it 'can change options when creating' do
     mock_create_with_options
     expect(
-      invoices.create(
+      invoices.retrieve(
         link: 'some-link-uuid',
         date_from: '2020-01-20',
         date_to: '2020-01-31',
