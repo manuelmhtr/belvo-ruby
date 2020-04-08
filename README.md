@@ -1,5 +1,6 @@
 <h1 align="center">Belvo Ruby Gem</h1>
 <p align="center">
+    <a href="https://rubygems.org/gems/belvo"><img alt="Rubygems.org" src="https://img.shields.io/gem/v/belvo?style=for-the-badge"></a>
     <a href="https://travis-ci.com/belvo-finance/belvo-ruby"><img alt="Travis (.com)" src="https://img.shields.io/travis/com/belvo-finance/belvo-ruby/master?style=for-the-badge"></a>
     <a href="https://coveralls.io/github/belvo-finance/belvo-ruby"><img alt="Coveralls github" src="https://img.shields.io/coveralls/github/belvo-finance/belvo-ruby?style=for-the-badge"></a>
     <a href="https://codeclimate.com/github/belvo-finance/belvo-ruby"><img alt="CodeClimate maintainability" src="https://img.shields.io/codeclimate/maintainability/belvo-finance/belvo-ruby?style=for-the-badge"></a>
