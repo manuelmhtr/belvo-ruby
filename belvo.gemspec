@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.version = Belvo::VERSION
   spec.authors = ['Belvo Finance S.L.']
   spec.email = ['hello@belvo.co']
-
+  spec.license = 'MIT'
   spec.summary = 'The Ruby gem for the Belvo API'
   spec.description = %(Belvo is the leading Open Banking API platform in Latin
                        America and the easiest way for users to connect their
@@ -28,4 +28,15 @@ Gem::Specification.new do |spec|
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
+
+  spec.add_dependency 'faraday'
+  spec.add_dependency 'faraday_middleware'
+  spec.add_dependency 'typhoeus'
+
+  spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'rake', '~> 12.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'rubocop', '~> 0.81.0'
+  spec.add_development_dependency 'rubocop-rspec'
+  spec.add_development_dependency 'webmock'
 end

@@ -9,6 +9,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+    - '*.gemspec'
 
 Lint/RaiseException:
   Enabled: true
