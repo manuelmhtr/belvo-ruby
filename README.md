@@ -2,6 +2,7 @@
 <p align="center">
     <a href="https://travis-ci.com/belvo-finance/belvo-ruby"><img alt="Travis (.com)" src="https://img.shields.io/travis/com/belvo-finance/belvo-ruby/master?style=for-the-badge"></a>
     <a href="https://coveralls.io/github/belvo-finance/belvo-ruby"><img alt="Coveralls github" src="https://img.shields.io/coveralls/github/belvo-finance/belvo-ruby?style=for-the-badge"></a>
+    <a href="https://codeclimate.com/github/belvo-finance/belvo-ruby"><img alt="CodeClimate maintainability" src="https://img.shields.io/codeclimate/maintainability/belvo-finance/belvo-ruby?style=for-the-badge"></a>
 </p>
 <p align="center"><a href="https://developers.belvo.co">Developers portal</a> | <a href="https://belvo-finance.github.io/belvo-ruby">Documentation</a></p>
 
@@ -25,7 +26,28 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
+require 'belvo'
 
+belvo = Belvo::Client.new(
+  'af6e69ff-43fa-4e10-8d90-3d217309a1e5',
+  'gdi64m68Lc6xUjIKN3aJF2fZd51wD36lTjGVyJO5xQBfL7PRsgFef-ADXBxIhUnd',
+  'https://sandbox.belvo.co'
+)
+
+begin
+  new_link = belvo.links.create(
+    institution: 'banamex_mx_retail', 
+    username: 'janedoe', 
+    password: 'super-secret'
+  )
+
+  belvo.accounts.create(link: new_link['id'])
+
+  puts belvo.accounts.list
+rescue Belvo::RequestError => e
+  puts e.status_code
+  puts e.detail
+end
 ```
 
 ## Development
