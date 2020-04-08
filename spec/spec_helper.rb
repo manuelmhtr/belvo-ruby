@@ -4,7 +4,6 @@ require 'bundler/setup'
 require 'webmock/rspec'
 require 'belvo'
 require 'belvo/http'
-require 'belvo/client'
 require 'belvo/resources'
 require 'belvo/exceptions'
 

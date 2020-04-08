@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'date'
-require 'faraday/options'
+require 'belvo/options'
 
 module AccessMode
   SINGLE = 'single'
@@ -39,14 +39,6 @@ module Belvo
       data = { session: session_id, token: token, link: link }
       @session.patch(@endpoint, data)
     end
-  end
-
-  # Contains the configurable properties for a Link
-  class LinkOptions < Faraday::Options.new(
-    :access_mode,
-    :token,
-    :encryption_key
-  )
   end
 
   # A Link is a set of credentials associated to a end-user access
@@ -88,14 +80,6 @@ module Belvo
     end
   end
 
-  # Contains the configurable properties for an Account
-  class AccountOptions < Faraday::Options.new(
-    :save_data,
-    :token,
-    :encryption_key
-  )
-  end
-
   # An Account is the representation of a bank account inside a financial
   # institution.
   class Account < Resource
@@ -115,16 +99,6 @@ module Belvo
       body = clean body: body
       @session.post(@endpoint, body)
     end
-  end
-
-  # Contains configurable properties for a Transaction
-  class TransactionOptions < Faraday::Options.new(
-    :date_to,
-    :account,
-    :token,
-    :encryption_key,
-    :save_data
-  )
   end
 
   # A Transaction contains the detailed information of each movement inside an
@@ -152,10 +126,6 @@ module Belvo
     end
   end
 
-  # Contains configurable properties of an Owner
-  class OwnerOptions < Faraday::Options.new(:token, :encryption_key, :save_data)
-  end
-
   # An Owner represents the person who has access to a Link and is the owner
   # of all the Accounts inside the Link
   class Owner < Resource
@@ -175,16 +145,6 @@ module Belvo
       body = clean body: body
       @session.post(@endpoint, body)
     end
-  end
-
-  # Contains configurable properties of a Balance
-  class BalanceOptions < Faraday::Options.new(
-    :token,
-    :date_to,
-    :account,
-    :encryption_key,
-    :save_data
-  )
   end
 
   # A Balance represents the financial status of an Account at a given time.
@@ -211,15 +171,6 @@ module Belvo
     end
   end
 
-  # Contains configurable properties of a Statement
-  class StatementOptions < Faraday::Options.new(
-    :token,
-    :encryption_key,
-    :save_data,
-    :attach_pdf
-  )
-  end
-
   # A Statement contains a resume of monthly Transactions inside an Account.
   class Statement < Resource
     def initialize(session)
@@ -242,15 +193,6 @@ module Belvo
       body = clean body: body
       @session.post(@endpoint, body)
     end
-  end
-
-  # Contains configurable properties of an Invoice
-  class InvoiceOptions < Faraday::Options.new(
-    :token,
-    :encryption_key,
-    :save_data,
-    :attach_xml
-  )
   end
 
   # An Invoice is the representation of an electronic invoice, that can be
@@ -277,15 +219,6 @@ module Belvo
       body = clean body: body
       @session.post(@endpoint, body)
     end
-  end
-
-  # Contains configurable properties of a TaxReturn
-  class TaxReturnOptions < Faraday::Options.new(
-    :token,
-    :encryption_key,
-    :save_data,
-    :attach_pdf
-  )
   end
 
   # A Tax return is the representation of the tax return document sent every

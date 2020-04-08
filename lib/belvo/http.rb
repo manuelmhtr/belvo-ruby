@@ -28,10 +28,6 @@ module Belvo
 
     private
 
-    attr_writer :key_id
-
-    attr_writer :key_password
-
     def raise_for_status(response)
       unless response.success?
         raise RequestError.new(
@@ -49,7 +45,7 @@ module Belvo
       response.success?
     end
 
-    def get(path, params = nil)
+    def get(path, params: nil)
       params = {} if params.nil?
       response = @session.get(path) do |req|
         req.params = params
@@ -66,7 +62,7 @@ module Belvo
       authenticate
     end
 
-    def list(path, params = nil)
+    def list(path, params: nil)
       params = {} if params.nil?
       loop do
         response = get(path, params: params)
@@ -81,7 +77,7 @@ module Belvo
       end
     end
 
-    def detail(path, id, params = nil)
+    def detail(path, id, params: nil)
       params = {} if params.nil?
 
       resource_path = format('%<path>s%<id>s/', path: path, id: id)
