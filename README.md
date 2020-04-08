@@ -1,9 +1,9 @@
 <h1 align="center">Belvo Ruby Gem</h1>
 <p align="center">
-    <a href="https://travis-ci.com/belvo-finance/belvo-ruby"><img alt="Travis (.com)" src="https://img.shields.io/travis/com/belvo-finance/belvo-python/master?style=for-the-badge"></a>
-    <a href="https://coveralls.io/github/belvo-finance/belvo-ruby"><img alt="Coveralls github" src="https://img.shields.io/coveralls/github/belvo-finance/belvo-python?style=for-the-badge"></a>
+    <a href="https://travis-ci.com/belvo-finance/belvo-ruby"><img alt="Travis (.com)" src="https://img.shields.io/travis/com/belvo-finance/belvo-ruby/master?style=for-the-badge"></a>
+    <a href="https://coveralls.io/github/belvo-finance/belvo-ruby"><img alt="Coveralls github" src="https://img.shields.io/coveralls/github/belvo-finance/belvo-ruby?style=for-the-badge"></a>
 </p>
-<p align="center"><a href="https://developers.belvo.co">Developers portal</a> | <a href="https://belvo-finance.github.io/belvo-python">Documentation</a></p>
+<p align="center"><a href="https://developers.belvo.co">Developers portal</a> | <a href="https://belvo-finance.github.io/belvo-ruby">Documentation</a></p>
 
 
 ## Installation
