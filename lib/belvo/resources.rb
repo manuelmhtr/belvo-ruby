@@ -278,4 +278,41 @@ module Belvo
       @session.post(@endpoint, body)
     end
   end
+
+  # Contains configurable properties of a TaxReturn
+  class TaxReturnOptions < Faraday::Options.new(
+    :token,
+    :encryption_key,
+    :save_data,
+    :attach_pdf
+  )
+  end
+
+  # A Tax return is the representation of the tax return document sent every
+  # year by a person or a business to the tax authority in the country.
+  class TaxReturn < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'tax-returns/'
+    end
+
+    def create(link:, year_from:, year_to:, options: nil)
+      options = TaxReturnOptions.from(options)
+      body = {
+        link: link,
+        year_from: year_from,
+        year_to: year_to,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true,
+        attach_pdf: options.attach_pdf
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+
+    def resume(_session_id, _token, _link: nil)
+      raise NotImplementedError 'TaxReturn does not support resuming a session.'
+    end
+  end
 end
