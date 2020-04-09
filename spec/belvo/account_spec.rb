@@ -44,6 +44,22 @@ RSpec.describe Belvo::Account do
     )
   end
 
+  def mock_filtered_list
+    mock_login_ok
+    WebMock.stub_request(:get, 'http://fake.api/api/accounts/').with(
+      basic_auth: %w[foo bar],
+      query: { institution: 'santander_mx_retail' }
+    ).to_return(
+      status: 200,
+      body: {
+        count: 1,
+        next: nil,
+        previous: nil,
+        results: [account_resp.transform_keys(&:to_s)]
+      }.to_json
+    )
+  end
+
   it 'can create accounts' do
     mock_create_accounts_ok
     expect(
@@ -56,5 +72,12 @@ RSpec.describe Belvo::Account do
     expect(
       accounts.detail(id: 'some-account-uuid')
     ).to eq(account_resp.transform_keys(&:to_s))
+  end
+
+  it 'can filter when listing' do
+    mock_filtered_list
+    expect(
+      accounts.list(params: { institution: 'santander_mx_retail' })
+    ).to eq([account_resp.transform_keys(&:to_s)])
   end
 end

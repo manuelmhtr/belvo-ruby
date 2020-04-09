@@ -23,11 +23,12 @@ module Belvo
     end
 
     # List all results
+    # @param params [Hash] Extra parameters sent as query strings.
     # @return [Array]
     # @raise [RequestError] If response code is different than 2XX
-    def list
+    def list(params: nil)
       results = []
-      @session.list(@endpoint) { |item| results.push item }
+      @session.list(@endpoint, params: params) { |item| results.push item }
       results
     end
 
