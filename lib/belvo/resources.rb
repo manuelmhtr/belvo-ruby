@@ -331,4 +331,13 @@ module Belvo
       raise NotImplementedError 'TaxReturn does not support resuming a session.'
     end
   end
+
+  # An Institution is an entity that Belvo can access information from. It can
+  # be a bank or fiscal type of institutions such as the SAT in Mexico.
+  class Institution < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'institutions/'
+    end
+  end
 end

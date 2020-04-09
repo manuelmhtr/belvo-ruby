@@ -74,5 +74,11 @@ module Belvo
     def tax_returns
       @tax_returns = TaxReturn.new @session
     end
+
+    # Provides access to Instituions resource
+    # @return [Institution]
+    def institutions
+      @institutions = Institution.new @session
+    end
   end
 end

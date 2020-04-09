@@ -41,8 +41,12 @@ RSpec.describe Belvo do
       expect(client.invoices).not_to be nil
     end
 
-    it 'has an tax_returns attribute' do
+    it 'has a tax_returns attribute' do
       expect(client.tax_returns).not_to be nil
+    end
+
+    it 'has an institutions attribute' do
+      expect(client.institutions).not_to be nil
     end
   end
 end
