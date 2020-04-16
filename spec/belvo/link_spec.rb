@@ -57,6 +57,24 @@ RSpec.describe Belvo::Link do
     )
   end
 
+  def mock_post_username_type_ok
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/links/').with(
+      basic_auth: %w[foo bar]
+    ).to_return(
+      status: 201,
+      body: single_link_resp.to_json
+    ).with(
+      body: {
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        access_mode: 'single',
+        username_type: '001'
+      }
+    )
+  end
+
   def mock_put_encryption_key_ok
     mock_login_ok
     WebMock.stub_request(:put, 'http://fake.api/api/links/some-id/').with(
@@ -98,6 +116,18 @@ RSpec.describe Belvo::Link do
         options: { access_mode: described_class::AccessMode::RECURRENT }
       )
     ).to eq(recurrent_link_resp.transform_keys(&:to_s))
+  end
+
+  it 'can create a link with username_type' do
+    mock_post_username_type_ok
+    expect(
+      links.register(
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        options: { username_type: '001' }
+      )
+    ).to eq(single_link_resp.transform_keys(&:to_s))
   end
 
   it 'can update an existing link' do

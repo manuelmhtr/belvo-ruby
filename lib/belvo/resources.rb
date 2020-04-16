@@ -95,7 +95,8 @@ module Belvo
         password2: password2,
         token: options.token,
         encryption_key: options.encryption_key,
-        access_mode: options.access_mode || AccessMode::SINGLE
+        access_mode: options.access_mode || AccessMode::SINGLE,
+        username_type: options.username_type
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)
