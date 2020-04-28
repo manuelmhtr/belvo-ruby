@@ -113,4 +113,19 @@ module Belvo
     :attach_pdf
   )
   end
+
+  # @!class TaxStatusOptions < Faraday::Options
+  # Contains configurable properties of a TaxStatus
+  # @!attribute save_data [rw] Should data be persisted or not.
+  # @!attribute token [rw] OTP token required by the institution
+  # @!attribute encryption_key [rw] Custom encryption key
+  # @!attribute attach_pdf [rw] Should the PDF file be included in the
+  #   response or not.
+  class TaxStatusOptions < Faraday::Options.new(
+    :token,
+    :encryption_key,
+    :save_data,
+    :attach_pdf
+  )
+  end
 end

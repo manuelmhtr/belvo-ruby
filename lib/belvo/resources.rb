@@ -133,7 +133,7 @@ module Belvo
     # Retrieve accounts from an existing link
     # @param link [String] Link UUID
     # @param options [AccountOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created accounts details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, options: nil)
       options = AccountOptions.from(options)
@@ -160,7 +160,7 @@ module Belvo
     # @param link [String] Link UUID
     # @param date_from [String] Date string (YYYY-MM-DD)
     # @param options [TransactionOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created transactions details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, date_from:, options: nil)
       options = TransactionOptions.from(options)
@@ -190,7 +190,7 @@ module Belvo
     # Retrieve owners from an existing link
     # @param link [String] Link UUID
     # @param options [OwnerOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created owners details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, options: nil)
       options = OwnerOptions.from(options)
@@ -217,7 +217,7 @@ module Belvo
     # @param link [String] Link UUID
     # @param date_from [String] Date string (YYYY-MM-DD)
     # @param options [BalanceOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created balances details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, date_from:, options: nil)
       options = BalanceOptions.from(options)
@@ -248,7 +248,7 @@ module Belvo
     # @param year [Integer]
     # @param month [Integer]
     # @param options [StatementOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created statement details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, account:, year:, month:, options: nil)
       options = StatementOptions.from(options)
@@ -280,7 +280,7 @@ module Belvo
     # @param date_from [String] Date string (YYYY-MM-DD)
     # @param date_to [String] Date string (YYYY-MM-DD)
     # @param options [InvoiceOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created invoices details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, date_from:, date_to:, type:, options: nil)
       options = InvoiceOptions.from(options)
@@ -312,7 +312,7 @@ module Belvo
     # @param year_from [Integer]
     # @param year_to [Integer]
     # @param options [TaxReturnOptions] Configurable properties
-    # @return [Hash] created link details
+    # @return [Hash] created tax returns details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, year_from:, year_to:, options: nil)
       options = TaxReturnOptions.from(options)
@@ -320,6 +320,37 @@ module Belvo
         link: link,
         year_from: year_from,
         year_to: year_to,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true,
+        attach_pdf: options.attach_pdf
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+
+    def resume(_session_id, _token, _link: nil)
+      raise NotImplementedError 'TaxReturn does not support resuming a session.'
+    end
+  end
+
+  # A Tax status is the representation of the tax situation of a person or a
+  # business to the tax authority in the country.
+  class TaxStatus < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'tax-status/'
+    end
+
+    # Retrieve tax status information from a specific fiscal link.
+    # @param link [String] Link UUID
+    # @param options [TaxStatusOptions] Configurable properties
+    # @return [Hash] created tax status details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = TaxStatusOptions.from(options)
+      body = {
+        link: link,
         token: options.token,
         encryption_key: options.encryption_key,
         save_data: options.save_data || true,

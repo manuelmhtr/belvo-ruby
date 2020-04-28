@@ -75,6 +75,12 @@ module Belvo
       @tax_returns = TaxReturn.new @session
     end
 
+    # Provides access to TaxStatus resource
+    # @return [TaxStatus]
+    def tax_status
+      @tax_status = TaxStatus.new @session
+    end
+
     # Provides access to Instituions resource
     # @return [Institution]
     def institutions
