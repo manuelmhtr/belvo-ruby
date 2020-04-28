@@ -57,6 +57,12 @@ module Belvo
       @balances = Balance.new @session
     end
 
+    # Provides access to FinancialReport resource
+    # @return [FinancialReport]
+    def financial_reports
+      @financial_reports = FinancialReport.new @session
+    end
+
     # Provides access to Statements resource
     # @return [Statement]
     def statements

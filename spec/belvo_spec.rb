@@ -33,6 +33,10 @@ RSpec.describe Belvo do
       expect(client.balances).not_to be nil
     end
 
+    it 'has a financial_reports attribute' do
+      expect(client.financial_reports).not_to be nil
+    end
+
     it 'has a statements attribute' do
       expect(client.statements).not_to be nil
     end

@@ -69,6 +69,20 @@ module Belvo
   )
   end
 
+  # @!class FinancialReportOptions < Faraday::Options
+  # Contains configurable properties of a Balance
+  # @!attribute account [rw] Account ID (UUID)
+  # @!attribute save_data [rw] Should data be persisted or not.
+  # @!attribute token [rw] OTP token required by the institution
+  # @!attribute encryption_key [rw] Custom encryption key
+  class FinancialReportOptions < Faraday::Options.new(
+    :account,
+    :token,
+    :encryption_key,
+    :save_data
+  )
+  end
+
   # @!class StatementOptions < Faraday::Options
   # Contains configurable properties of a Statement
   # @!attribute save_data [rw] Should data be persisted or not.

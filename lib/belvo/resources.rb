@@ -236,6 +236,32 @@ module Belvo
     end
   end
 
+  # A FinancialReport showcases the relevant information of a Link at a given time.
+  class FinancialReport < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'financial-reports/'
+    end
+
+    # Retrieve a financial report from a specific link
+    # @param link [String] Link UUID
+    # @param options [FinancialReportOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = FinancialReportOptions.from(options)
+      body = {
+        link: link,
+        token: options.token,
+        account: options.account,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
   # A Statement contains a resume of monthly Transactions inside an Account.
   class Statement < Resource
     def initialize(session)
