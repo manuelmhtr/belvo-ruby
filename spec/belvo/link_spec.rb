@@ -75,6 +75,25 @@ RSpec.describe Belvo::Link do
     )
   end
 
+  def mock_post_cert_key_ok
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/links/').with(
+      basic_auth: %w[foo bar]
+    ).to_return(
+      status: 201,
+      body: single_link_resp.to_json
+    ).with(
+      body: {
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        access_mode: 'single',
+        certificate: '',
+        private_key: ''
+      }
+    )
+  end
+
   def mock_put_encryption_key_ok
     mock_login_ok
     WebMock.stub_request(:put, 'http://fake.api/api/links/some-id/').with(
@@ -126,6 +145,21 @@ RSpec.describe Belvo::Link do
         username: 'janedoe',
         password: 'secret',
         options: { username_type: '001' }
+      )
+    ).to eq(single_link_resp.transform_keys(&:to_s))
+  end
+
+  it 'can create a link with certificate and private_key' do
+    mock_post_cert_key_ok
+    expect(
+      links.register(
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        options: {
+          certificate: __dir__ + '/test_file.txt',
+          private_key: __dir__ + '/test_file.txt'
+        }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end

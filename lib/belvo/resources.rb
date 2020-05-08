@@ -2,6 +2,7 @@
 
 require 'date'
 require 'belvo/options'
+require 'belvo/utils'
 
 module Belvo
   # Represents a consumable REST resource from Belvo API
@@ -88,6 +89,8 @@ module Belvo
       options: nil
     )
       options = LinkOptions.from(options)
+      options.certificate = Utils.read_file_to_b64(options.certificate)
+      options.private_key = Utils.read_file_to_b64(options.private_key)
       body = {
         institution: institution,
         username: username,
@@ -96,7 +99,9 @@ module Belvo
         token: options.token,
         encryption_key: options.encryption_key,
         access_mode: options.access_mode || AccessMode::SINGLE,
-        username_type: options.username_type
+        username_type: options.username_type,
+        certificate: options.certificate,
+        private_key: options.private_key
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)
@@ -109,13 +114,18 @@ module Belvo
     # @param options [LinkOptions] Configurable properties
     # @return [Hash] link details
     # @raise [RequestError] If response code is different than 2XX
-    def update(id:, password:, password2: nil, options: nil)
+    def update(id:, password: nil, password2: nil, options: nil)
       options = LinkOptions.from(options)
+      options.certificate = Utils.read_file_to_b64(options.certificate)
+      options.private_key = Utils.read_file_to_b64(options.private_key)
       body = {
         password: password,
         password2: password2,
         token: options.token,
-        encryption_key: options.encryption_key
+        encryption_key: options.encryption_key,
+        username_type: options.username_type,
+        certificate: options.certificate,
+        private_key: options.private_key
       }.merge(options)
       body = clean body: body
       @session.put(@endpoint, id, body)

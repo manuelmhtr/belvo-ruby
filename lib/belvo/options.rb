@@ -13,7 +13,9 @@ module Belvo
     :access_mode,
     :token,
     :encryption_key,
-    :username_type
+    :username_type,
+    :certificate,
+    :private_key
   )
   end
 
