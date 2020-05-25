@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Belvo::Client
+  
+    &mdash; Documentation by YARD 0.9.25
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Belvo::Client";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (C)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Belvo.html" title="Belvo (module)">Belvo</a></span></span>
+     &raquo; 
+    <span class="title">Client</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Belvo::Client
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Belvo::Client</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/belvo.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Allows easy access to Belvo API servers.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#session-instance_method" title="#session (instance method)">#<strong>session</strong>  &#x21d2; APISession </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Current Belvo API session.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#accounts-instance_method" title="#accounts (instance method)">#<strong>accounts</strong>  &#x21d2; Account </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Accounts resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#balances-instance_method" title="#balances (instance method)">#<strong>balances</strong>  &#x21d2; Balance </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Balances resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(secret_key_id, secret_key_password, url = nil)  &#x21d2; APISession </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Authenticated Belvo API session.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#institutions-instance_method" title="#institutions (instance method)">#<strong>institutions</strong>  &#x21d2; Institution </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Instituions resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invoices-instance_method" title="#invoices (instance method)">#<strong>invoices</strong>  &#x21d2; Invoice </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Invoices resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#links-instance_method" title="#links (instance method)">#<strong>links</strong>  &#x21d2; Link </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Links resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#owners-instance_method" title="#owners (instance method)">#<strong>owners</strong>  &#x21d2; Owner </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Owners resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#statements-instance_method" title="#statements (instance method)">#<strong>statements</strong>  &#x21d2; Statement </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Statements resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tax_returns-instance_method" title="#tax_returns (instance method)">#<strong>tax_returns</strong>  &#x21d2; TaxReturn </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to TaxReturns resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tax_status-instance_method" title="#tax_status (instance method)">#<strong>tax_status</strong>  &#x21d2; TaxStatus </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to TaxStatus resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transactions-instance_method" title="#transactions (instance method)">#<strong>transactions</strong>  &#x21d2; Transaction </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to Transactions resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#widget_token-instance_method" title="#widget_token (instance method)">#<strong>widget_token</strong>  &#x21d2; WidgetToken </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides access to WidgetToken resource.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(secret_key_id, secret_key_password, url = nil)  &#x21d2; <tt><span class='object_link'><a href="APISession.html" title="Belvo::APISession (class)">APISession</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Authenticated Belvo API session.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>secret_key_id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>secret_key_password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>API host URL, can be set from the environment using the variable name BELVO_API_URL</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="BelvoAPIError.html" title="Belvo::BelvoAPIError (class)">BelvoAPIError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_secret_key_id'>secret_key_id</span><span class='comma'>,</span> <span class='id identifier rubyid_secret_key_password'>secret_key_password</span><span class='comma'>,</span> <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_belvo_api_url'>belvo_api_url</span> <span class='op'>=</span> <span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BELVO_API_URL</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="BelvoAPIError.html" title="Belvo::BelvoAPIError (class)">BelvoAPIError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You need to provide a URL.</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_belvo_api_url'>belvo_api_url</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+
+  <span class='ivar'>@session</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Belvo.html" title="Belvo (module)">Belvo</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="APISession.html" title="Belvo::APISession (class)">APISession</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="APISession.html#initialize-instance_method" title="Belvo::APISession#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_belvo_api_url'>belvo_api_url</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@session</span><span class='period'>.</span><span class='id identifier rubyid_login'>login</span><span class='lparen'>(</span><span class='id identifier rubyid_secret_key_id'>secret_key_id</span><span class='comma'>,</span> <span class='id identifier rubyid_secret_key_password'>secret_key_password</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="BelvoAPIError.html" title="Belvo::BelvoAPIError (class)">BelvoAPIError</a></span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Login failed.</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="session-instance_method">
+  
+    #<strong>session</strong>  &#x21d2; <tt><span class='object_link'><a href="APISession.html" title="Belvo::APISession (class)">APISession</a></span></tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Current Belvo API session</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="APISession.html" title="Belvo::APISession (class)">APISession</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_session'>session</span>
+  <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="accounts-instance_method">
+  
+    #<strong>accounts</strong>  &#x21d2; <tt><span class='object_link'><a href="Account.html" title="Belvo::Account (class)">Account</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Accounts resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Account.html" title="Belvo::Account (class)">Account</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_accounts'>accounts</span>
+  <span class='ivar'>@accounts</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Account.html" title="Belvo::Account (class)">Account</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Account.html#initialize-instance_method" title="Belvo::Account#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="balances-instance_method">
+  
+    #<strong>balances</strong>  &#x21d2; <tt><span class='object_link'><a href="Balance.html" title="Belvo::Balance (class)">Balance</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Balances resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Balance.html" title="Belvo::Balance (class)">Balance</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_balances'>balances</span>
+  <span class='ivar'>@balances</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Balance.html" title="Belvo::Balance (class)">Balance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Balance.html#initialize-instance_method" title="Belvo::Balance#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="institutions-instance_method">
+  
+    #<strong>institutions</strong>  &#x21d2; <tt><span class='object_link'><a href="Institution.html" title="Belvo::Institution (class)">Institution</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Instituions resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Institution.html" title="Belvo::Institution (class)">Institution</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_institutions'>institutions</span>
+  <span class='ivar'>@institutions</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Institution.html" title="Belvo::Institution (class)">Institution</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Institution.html#initialize-instance_method" title="Belvo::Institution#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="invoices-instance_method">
+  
+    #<strong>invoices</strong>  &#x21d2; <tt><span class='object_link'><a href="Invoice.html" title="Belvo::Invoice (class)">Invoice</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Invoices resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Invoice.html" title="Belvo::Invoice (class)">Invoice</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_invoices'>invoices</span>
+  <span class='ivar'>@invoices</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Invoice.html" title="Belvo::Invoice (class)">Invoice</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Invoice.html#initialize-instance_method" title="Belvo::Invoice#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="links-instance_method">
+  
+    #<strong>links</strong>  &#x21d2; <tt><span class='object_link'><a href="Link.html" title="Belvo::Link (class)">Link</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Links resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Link.html" title="Belvo::Link (class)">Link</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_links'>links</span>
+  <span class='ivar'>@links</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Link.html" title="Belvo::Link (class)">Link</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Link.html#initialize-instance_method" title="Belvo::Link#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="owners-instance_method">
+  
+    #<strong>owners</strong>  &#x21d2; <tt><span class='object_link'><a href="Owner.html" title="Belvo::Owner (class)">Owner</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Owners resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Owner.html" title="Belvo::Owner (class)">Owner</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_owners'>owners</span>
+  <span class='ivar'>@owners</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Owner.html" title="Belvo::Owner (class)">Owner</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Owner.html#initialize-instance_method" title="Belvo::Owner#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="statements-instance_method">
+  
+    #<strong>statements</strong>  &#x21d2; <tt><span class='object_link'><a href="Statement.html" title="Belvo::Statement (class)">Statement</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Statements resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Statement.html" title="Belvo::Statement (class)">Statement</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_statements'>statements</span>
+  <span class='ivar'>@statements</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Statement.html" title="Belvo::Statement (class)">Statement</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Statement.html#initialize-instance_method" title="Belvo::Statement#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tax_returns-instance_method">
+  
+    #<strong>tax_returns</strong>  &#x21d2; <tt><span class='object_link'><a href="TaxReturn.html" title="Belvo::TaxReturn (class)">TaxReturn</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to TaxReturns resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaxReturn.html" title="Belvo::TaxReturn (class)">TaxReturn</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tax_returns'>tax_returns</span>
+  <span class='ivar'>@tax_returns</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TaxReturn.html" title="Belvo::TaxReturn (class)">TaxReturn</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TaxReturn.html#initialize-instance_method" title="Belvo::TaxReturn#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tax_status-instance_method">
+  
+    #<strong>tax_status</strong>  &#x21d2; <tt><span class='object_link'><a href="TaxStatus.html" title="Belvo::TaxStatus (class)">TaxStatus</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to TaxStatus resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="TaxStatus.html" title="Belvo::TaxStatus (class)">TaxStatus</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tax_status'>tax_status</span>
+  <span class='ivar'>@tax_status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="TaxStatus.html" title="Belvo::TaxStatus (class)">TaxStatus</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TaxStatus.html#initialize-instance_method" title="Belvo::TaxStatus#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="transactions-instance_method">
+  
+    #<strong>transactions</strong>  &#x21d2; <tt><span class='object_link'><a href="Transaction.html" title="Belvo::Transaction (class)">Transaction</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to Transactions resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Transaction.html" title="Belvo::Transaction (class)">Transaction</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_transactions'>transactions</span>
+  <span class='ivar'>@transactions</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Transaction.html" title="Belvo::Transaction (class)">Transaction</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Transaction.html#initialize-instance_method" title="Belvo::Transaction#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="widget_token-instance_method">
+  
+    #<strong>widget_token</strong>  &#x21d2; <tt><span class='object_link'><a href="WidgetToken.html" title="Belvo::WidgetToken (class)">WidgetToken</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides access to WidgetToken resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="WidgetToken.html" title="Belvo::WidgetToken (class)">WidgetToken</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+92
+93
+94</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/belvo.rb', line 92</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_widget_token'>widget_token</span>
+  <span class='ivar'>@widget_token</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="WidgetToken.html" title="Belvo::WidgetToken (class)">WidgetToken</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="WidgetToken.html#initialize-instance_method" title="Belvo::WidgetToken#initialize (method)">new</a></span></span> <span class='ivar'>@session</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Mon May 25 13:34:26 2020 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.25 (ruby-2.7.0).
+</div>
+
+    </div>
+  </body>
+</html>
