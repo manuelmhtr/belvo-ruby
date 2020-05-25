@@ -52,5 +52,9 @@ RSpec.describe Belvo do
     it 'has an institutions attribute' do
       expect(client.institutions).not_to be nil
     end
+
+    it 'has an widget_token attribute' do
+      expect(client.widget_token).not_to be nil
+    end
   end
 end

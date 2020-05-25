@@ -383,4 +383,23 @@ module Belvo
       @endpoint = 'institutions/'
     end
   end
+
+  # A WidgetToken is a limited scope with short time to live token, that
+  # contains access and refresh keys to allow you embedding Belvo's Connect
+  # Widget into your app.
+  class WidgetToken < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'token/'
+    end
+
+    def create
+      body = {
+        id: @session.key_id,
+        password: @session.key_password,
+        scopes: 'read_institutions,write_links,read_links,delete_links'
+      }
+      @session.post(@endpoint, body)
+    end
+  end
 end

@@ -86,5 +86,11 @@ module Belvo
     def institutions
       @institutions = Institution.new @session
     end
+
+    # Provides access to WidgetToken resource
+    # @return [WidgetToken]
+    def widget_token
+      @widget_token = WidgetToken.new @session
+    end
   end
 end

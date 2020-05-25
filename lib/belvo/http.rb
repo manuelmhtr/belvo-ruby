@@ -11,6 +11,9 @@ require 'belvo/exceptions'
 module Belvo
   # Describes a Belvo API session
   class APISession
+    attr_reader :key_id
+    attr_reader :key_password
+
     # @param url [String] Belvo API host url
     # @return [Faraday::Connection]
     def initialize(url)
