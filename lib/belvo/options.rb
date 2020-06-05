@@ -7,11 +7,15 @@ module Belvo
   # Contains the configurable properties for a Link
   # @!attribute access_mode [rw] Link access mode (SINGLE or RECURRENT)
   # @!attribute token [rw] OTP token required by the institution
+  # @!attribute username2 [rw] End-user secondary username, if any
+  # @!attribute password2 [rw] End-user secondary password, if any
   # @!attribute encryption_key [rw] Custom encryption key
   # @!attribute username_type [rw] Type of the username provided
   class LinkOptions < Faraday::Options.new(
     :access_mode,
     :token,
+    :username2,
+    :password2,
     :encryption_key,
     :username_type,
     :certificate,

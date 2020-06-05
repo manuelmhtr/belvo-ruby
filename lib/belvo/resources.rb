@@ -77,7 +77,6 @@ module Belvo
     # @param institution [String] Institution name
     # @param username [String] End-user username
     # @param password [String] End-user password
-    # @param password2 [String, nil] End-user secondary password, if any
     # @param options [LinkOptions] Configurable properties
     # @return [Hash] created link details
     # @raise [RequestError] If response code is different than 2XX
@@ -85,7 +84,6 @@ module Belvo
       institution:,
       username:,
       password:,
-      password2: nil,
       options: nil
     )
       options = LinkOptions.from(options)
@@ -95,13 +93,7 @@ module Belvo
         institution: institution,
         username: username,
         password: password,
-        password2: password2,
-        token: options.token,
-        encryption_key: options.encryption_key,
-        access_mode: options.access_mode || AccessMode::SINGLE,
-        username_type: options.username_type,
-        certificate: options.certificate,
-        private_key: options.private_key
+        access_mode: options.access_mode || AccessMode::SINGLE
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)
