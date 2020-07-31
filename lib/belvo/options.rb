@@ -90,6 +90,16 @@ module Belvo
   )
   end
 
+  # @!class IncomeOptions < Faraday::Options
+  # Contains configurable properties of an Income
+  # @!attribute save_data [rw] Should data be persisted or not.
+  # @!attribute encryption_key [rw] Custom encryption key
+  class IncomeOptions < Faraday::Options.new(
+    :encryption_key,
+    :save_data
+  )
+  end
+
   # @!class InvoiceOptions < Faraday::Options
   # Contains configurable properties of an Invoice
   # @!attribute save_data [rw] Should data be persisted or not.

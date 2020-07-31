@@ -63,6 +63,12 @@ module Belvo
       @statements = Statement.new @session
     end
 
+    # Provides access to Incomes resource
+    # @return [Income]
+    def incomes
+      @incomes = Income.new @session
+    end
+
     # Provides access to Invoices resource
     # @return [Invoice]
     def invoices

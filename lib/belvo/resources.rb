@@ -269,6 +269,30 @@ module Belvo
     end
   end
 
+  # A Income contains a resume of monthly Transactions inside an Account.
+  class Income < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'incomes/'
+    end
+
+    # Retrieve incomes information from a specific banking link.
+    # @param link [String] Link UUID
+    # @param options [IncomesOptions] Configurable properties
+    # @return [Hash] created incomes details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = IncomeOptions.from(options)
+      body = {
+        link: link,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
   # An Invoice is the representation of an electronic invoice, that can be
   # received or sent, by a business or an individual and has been uploaded
   # to the fiscal institution website
