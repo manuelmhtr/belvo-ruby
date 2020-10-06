@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    belvo (0.6.0)
+    belvo (0.6.1)
       faraday
       faraday_middleware
       typhoeus
