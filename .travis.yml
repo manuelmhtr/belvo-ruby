@@ -7,3 +7,11 @@ before_install: gem install bundler -v 2.1.4
 script:
   - bundle exec rubocop
   - bundle exec rspec spec
+deploy:
+  provider: rubygems
+  api_key:
+    secure: n8WZOrOPf/ZKKsp4o6wrUvv2wr5WQPghBowu/tUTuE9yE7UKL8s4JWV2sT5+k++hxlhziyhzY3ES7tk7LwHJ7PJ8bGdZdT5L2IED2dvOipRO40SAJ4jle8wqnUgeShnotk6QW817R5AbD3MOpEFcWA2Xm62QsriH1YbJbkEBdyfnub6sxT0atZmeEfUX5Zs1qSpsN0jkPpTd9okKBTYRdrDQkSdyShEL4FyL0ljlcPaUbHJFGmlZrwDYh7SZn8Td/hznPpJOy7uQh6UF2fuvtOrgT1vW6Kxz1AVG8tE5fATfLZ6fiuad/b7gMTPNb713wzAwJBmL88UHjWH+sMc2OpSokO/PRv0VbVQ1yMupLGe3DgeMCj1CAQmVXVNbQPAXHczH+u4SVLkJru8iP0Uju75SoI+M6Ee9H5T6Y7OLWyYydRadgqMlhnci6QooQdihLeE/NLBJGUESHIGJidywFz1QSDSNj4ecwacH6ZstHp1k3WjNo5IKoyR88cV8PMvDf16naKp+gfhr+UOQp9P8qxk9yW9M5rs18fLU8THpyJYNJe1udRdgpBgYP+uUei3e7PgAki5jD14k5fs9WdrXwB4jnOuXUfxZhyPdnEKmkRcullddfPmQ0YyPBSFQvezUI4bCSji4ds+MFDUxQ/gfkduvdOsICcd7/g9TqKJK5EQ=
+  gem: belvo-ruby
+  on:
+    tags: true
+    repo: belvo-finance/belvo-ruby
