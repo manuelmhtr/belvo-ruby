@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = 'belvo'
   spec.version = Belvo::VERSION
   spec.authors = ['Belvo Finance S.L.']
-  spec.email = ['hello@belvo.co']
+  spec.email = ['sdks@belvo.co']
   spec.license = 'MIT'
   spec.summary = 'The Ruby gem for the Belvo API'
   spec.description = %(Belvo is the leading Open Banking API platform in Latin
