@@ -14,6 +14,13 @@ RSpec.describe Belvo::Link do
     described_class.new(client.session)
   end
 
+  let(:link_token_resp) do
+    {
+      access: 'abcde',
+      refresh: '123456'
+    }
+  end
+
   def mock_empty_links_list
     mock_login_ok
     WebMock.stub_request(:get, 'http://fake.api/api/links/').with(
@@ -233,5 +240,24 @@ RSpec.describe Belvo::Link do
         options: { encryption_key: 'this-is-so-secret' }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
+  end
+
+  def mock_request_link_token_ok
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/links/12345/token/').with(
+      body: {
+        scopes: 'read_links, write_links'
+      }
+    ).to_return(
+      status: 200,
+      body: link_token_resp.to_json
+    )
+  end
+
+  it 'can create a new link token' do
+    mock_request_link_token_ok
+    expect(
+      links.token(id: '12345', scopes: 'read_links, write_links')
+    ).to eq(link_token_resp.transform_keys(&:to_s))
   end
 end

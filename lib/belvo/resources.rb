@@ -122,6 +122,18 @@ module Belvo
       body = clean body: body
       @session.put(@endpoint, id, body)
     end
+
+    # Allows to create a token with client-specified scope and short TTL.
+    # @param id [String] Link UUID
+    # @param scopes [String] Configurable scopes eg: "read_links,write_links"
+    # @return [Hash] with a "refresh" and "access" token
+    # @raise [RequestError] If response code is different than 2XX
+    def token(id:, scopes:)
+      body = {
+        scopes: scopes
+      }
+      @session.token(@endpoint, id, body)
+    end
   end
 
   # An Account is the representation of a bank account inside a financial

@@ -122,6 +122,19 @@ module Belvo
 
     # Perform a POST request to an API endpoint
     # @param path [String] API endpoint
+    # @param id [String] Resource UUID
+    # @param data [object] JSON parseable object
+    # @return [Hash] Response details
+    # @raise [RequestError] If response code is different than 2XX
+    def token(path, id, data)
+      resource_path = format('%<path>s%<id>s/token/', path: path, id: id)
+      response = @session.post(resource_path, data.to_json)
+      raise_for_status response
+      response.body
+    end
+
+    # Perform a POST request to an API endpoint
+    # @param path [String] API endpoint
     # @param data [object] JSON parseable object
     # @return [Hash] Response details
     # @raise [RequestError] If response code is different than 2XX
