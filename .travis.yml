@@ -1,4 +1,3 @@
----
 language: ruby
 cache: bundler
 rvm:
@@ -10,9 +9,9 @@ script:
 deploy:
   provider: rubygems
   api_key:
-    secure: ug6UH1FR3XU+PavT0QUWyJmoEhfQofdS2LG9d49P+BwqnKf+d+5J2HI2BFp3SgJ1c9MLbzYPR8L0lKNSSmiC+hmvLrL7WYvf21B4jm9iwHpGNpahYN5k+de290T5lnpk11xE69YWR8wXxlzxwuCS9pic9nC7wKmibf0dHCccdekGZ7B16Ii6o0IGSTDm5jJRSycuPck4pn0j8yfbWiryLaA4VQFdMAw1qr/FSlw3bD9Ipgo42kEVHMuuGtCvK9usv3UJNVcq6UoXJbufQYfw+dyWRqe3XOYkG/HCgboiSIH/H4G4vXFzXIk6HI/6Qx5/QcQviyDcetloKW6yFNxwiVuEDkRl3oTtIs2x30kc+v9cl6pT8PoMim6oECYEi3177Sedr7l4oYa2jusbxJJMo8E4XAR8g2V72vnRAs52ksYvPLTh53VZ/i7F/uPKY/U2bLYncxiAZ8OT3RrwmeNOaSQbfxLK7EhFzmUam3xSWWDMB+eQ4J4LvWx7hqbpJ0wryHL06/lHw6h0VxQi2Y0aERu9Q8ybv7Gzjc0WdFw2v3J0QDPd1vkvDrU/JQlJ++9QOOjYLfSxROTmJ56x0CGrc+3W7nVLnF+iaQBdsQ3I4070SbeJG3cyxWsfbaYGlkpY1dVuBUMbL/bwdn16YWHCbGupBPLYoO1mTfT7SSdqFQg=
+    secure: XAt2UW9aTWfxIi8VaalA9PtMvPx3EYki4kxL5UVvtHUDqngNGpD/d68Wg2cdv4GKTks0Q3pJ95h/A9yNJHdTMNw3bgt0Ir7IvII8tzQMJNQZvbH2ST16UGnXaKP5wskH/JSoOrlXpTaFgrwsptln5srMGcCrnEMKmC3GV40q847l2Ohj71hEZAjnAgfaSz2CWrxCWahEIjKKnIfcb1kdDPqbKHm6jU4104gYIRhVG3SE9r0QjNdy0zQnT/xE8PGXwSZKgTVF786qW9JNvujAgk4Olk89CSPkOFTg5NDFR/tE9jgpoCa87B+geeEK9c5w4L3+3EGSUCL2/Kk7s6VgKF+ho4VsnhuzCGMS4uxCJslhPJ2dH6n7EUt30E2qjqtDbgNk6vZO/OCW+VEgjBxq85fzCmfMHSWQlfAVSxATKw/NhVXPWjjTF0tvwZBolPl9fk8F4LSDZaVif0TDShk9XzOFFQGtGND3sDBTxtliNhBXZiY5PUFKhI4KN9admvr/Sww1RJi7Zalwzd3Zw/M2L+ELOyDteJ8QKNM6nF8+LahZJQlWXLJ4hv0JQ6Cc+/VMsU1K/yBEVi5B0cNPeidynza1cLhzOcYAJvylnHxAy6b0yR/yV8eFD25yCm2CXoAL7mcjjzwwTeQ7QkacjIRH/Ko/gy4cynlXC6g3Z+sdGrM=
   gem: belvo
   on:
     tags: true
     repo: belvo-finance/belvo-ruby
-  skip_cleanup: true
+  skip_cleanup: 'true'
