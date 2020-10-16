@@ -32,7 +32,7 @@ RSpec.describe Belvo::Balance do
       body: {
         link: 'some-link-uuid',
         date_from: '2020-01-01',
-        date_to: Date.today.to_s,
+        date_to: '2020-01-02',
         save_data: true
       }
     ).to_return(
@@ -61,7 +61,9 @@ RSpec.describe Belvo::Balance do
   it 'can create' do
     mock_create_ok
     expect(
-      balances.retrieve(link: 'some-link-uuid', date_from: '2020-01-01')
+      balances.retrieve(
+        link: 'some-link-uuid', date_from: '2020-01-01', date_to: '2020-01-02'
+      )
     ).to eq(balance_resp.transform_keys(&:to_s))
   end
 
@@ -71,9 +73,9 @@ RSpec.describe Belvo::Balance do
       balances.retrieve(
         link: 'some-link-uuid',
         date_from: '2020-01-01',
+        date_to: '2020-01-02',
         options: {
           token: 'a-token',
-          date_to: '2020-01-02',
           save_data: false
         }
       )
