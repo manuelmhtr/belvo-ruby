@@ -230,12 +230,12 @@ module Belvo
     #   specific link
     # @param link [String] Link UUID
     # @param date_from [String] Date string (YYYY-MM-DD)
-    # @param date_to [String] Date string (YYYY-MM-DD)
     # @param options [BalanceOptions] Configurable properties
     # @return [Hash] created balances details
     # @raise [RequestError] If response code is different than 2XX
-    def retrieve(link:, date_from:, date_to:, options: nil)
+    def retrieve(link:, date_from:, options: nil)
       options = BalanceOptions.from(options)
+      date_to = options.date_to || Date.today.to_s
       body = {
         link: link,
         date_from: date_from,
