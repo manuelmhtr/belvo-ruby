@@ -163,7 +163,8 @@ RSpec.describe Belvo::Link do
       links.register(
         institution: 'bank',
         username: 'janedoe',
-        password: 'secret'
+        password: 'secret',
+        options: { access_mode: described_class::AccessMode::SINGLE }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end
@@ -187,7 +188,10 @@ RSpec.describe Belvo::Link do
         institution: 'bank',
         username: 'janedoe',
         password: 'secret',
-        options: { username_type: '001' }
+        options: {
+          username_type: '001',
+          access_mode: described_class::AccessMode::SINGLE
+        }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end
@@ -199,7 +203,10 @@ RSpec.describe Belvo::Link do
         institution: 'bank',
         username: 'janedoe',
         password: 'secret',
-        options: { username2: 'johndoe' }
+        options: {
+          username2: 'johndoe',
+          access_mode: described_class::AccessMode::SINGLE
+        }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end
@@ -211,7 +218,10 @@ RSpec.describe Belvo::Link do
         institution: 'bank',
         username: 'janedoe',
         password: 'secret',
-        options: { password2: 'secondsecret' }
+        options: {
+          password2: 'secondsecret',
+          access_mode: described_class::AccessMode::SINGLE
+        }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end
@@ -224,6 +234,7 @@ RSpec.describe Belvo::Link do
         username: 'janedoe',
         password: 'secret',
         options: {
+          access_mode: described_class::AccessMode::SINGLE,
           certificate: __dir__ + '/test_file.txt',
           private_key: __dir__ + '/test_file.txt'
         }

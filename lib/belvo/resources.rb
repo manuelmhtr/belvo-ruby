@@ -93,7 +93,7 @@ module Belvo
         institution: institution,
         username: username,
         password: password,
-        access_mode: options.access_mode || AccessMode::SINGLE
+        access_mode: options.access_mode
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)
