@@ -8,6 +8,7 @@ module Belvo
   # @!attribute access_mode [rw] Link access mode (SINGLE or RECURRENT)
   # @!attribute token [rw] OTP token required by the institution
   # @!attribute username2 [rw] End-user secondary username, if any
+  # @!attribute username3 [rw] End-user tertiary username, if any
   # @!attribute password2 [rw] End-user secondary password, if any
   # @!attribute encryption_key [rw] Custom encryption key
   # @!attribute username_type [rw] Type of the username provided
@@ -15,6 +16,7 @@ module Belvo
     :access_mode,
     :token,
     :username2,
+    :username3,
     :password2,
     :encryption_key,
     :username_type,

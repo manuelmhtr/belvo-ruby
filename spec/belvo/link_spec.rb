@@ -100,6 +100,25 @@ RSpec.describe Belvo::Link do
     )
   end
 
+  def mock_post_three_usernames_ok
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/links/').with(
+      basic_auth: %w[foo bar]
+    ).to_return(
+      status: 201,
+      body: single_link_resp.to_json
+    ).with(
+      body: {
+        institution: 'bank',
+        username: 'janedoe',
+        username2: 'johndoe',
+        username3: 'foo',
+        password: 'secret',
+        access_mode: 'single'
+      }
+    )
+  end
+
   def mock_post_two_passwords_ok
     mock_login_ok
     WebMock.stub_request(:post, 'http://fake.api/api/links/').with(
@@ -205,6 +224,22 @@ RSpec.describe Belvo::Link do
         password: 'secret',
         options: {
           username2: 'johndoe',
+          access_mode: described_class::AccessMode::SINGLE
+        }
+      )
+    ).to eq(single_link_resp.transform_keys(&:to_s))
+  end
+
+  it 'can create a link with three usernames' do
+    mock_post_three_usernames_ok
+    expect(
+      links.register(
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        options: {
+          username2: 'johndoe',
+          username3: 'foo',
           access_mode: described_class::AccessMode::SINGLE
         }
       )
