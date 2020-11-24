@@ -48,7 +48,8 @@ begin
   new_link = belvo.links.register(
     institution: 'banamex_mx_retail', 
     username: 'janedoe', 
-    password: 'super-secret'
+    password: 'super-secret',
+    options: { access_mode: Belvo::Link::AccessMode::SINGLE }
   )
 
   belvo.accounts.retrieve(link: new_link['id'])
