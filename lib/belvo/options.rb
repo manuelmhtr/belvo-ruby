@@ -146,4 +146,13 @@ module Belvo
     :attach_pdf
   )
   end
+  # @!class WidgetTokenOptions < Faraday::Options
+  # Contains configurable properties of a WidgetToken
+  # @!attribute scopes [rw] Should have WidgetToken's permssions.
+  # @!attribute link_id [rw] Should the WidgetToken be tied to a specific link.
+  class WidgetTokenOptions < Faraday::Options.new(
+    :scopes,
+    :link_id
+  )
+  end
 end
