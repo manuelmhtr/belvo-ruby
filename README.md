@@ -9,7 +9,7 @@
 ## 📕 Documentation
 How to use `belvo-ruby`: https://belvo-finance.github.io/belvo-ruby/
 
-If you want to check the full documentation about Belvo API: https://docs.belvo.co
+If you want to check the full documentation about Belvo API: https://docs.belvo.com
 
 Or if you want to more information about:
 * [Getting Belvo API keys](https://developers.belvo.com/docs/get-your-belvo-api-keys)
@@ -41,7 +41,7 @@ require 'belvo'
 belvo = Belvo::Client.new(
   'af6e69ff-43fa-4e10-8d90-3d217309a1e5',
   'gdi64m68Lc6xUjIKN3aJF2fZd51wD36lTjGVyJO5xQBfL7PRsgFef-ADXBxIhUnd',
-  'https://sandbox.belvo.co'
+  'https://sandbox.belvo.com'
 )
 
 begin
