@@ -337,6 +337,38 @@ module Belvo
     end
   end
 
+  # A Tax compliance status is the representation of the tax situation
+  # of a person or a business to the tax authority in the country.
+  class TaxComplianceStatus < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'tax-compliance-status/'
+    end
+
+    # Retrieve tax compliance status information from a specific fiscal link.
+    # @param link [String] Link UUID
+    # @param options [TaxComplianceStatusOptions] Configurable properties
+    # @return [Hash] created tax compliance status details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = TaxComplianceStatusOptions.from(options)
+      body = {
+        link: link,
+        token: options.token,
+        encryption_key: options.encryption_key,
+        save_data: options.save_data || true,
+        attach_pdf: options.attach_pdf
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+
+    def resume(_session_id, _token, _link: nil)
+      raise NotImplementedError 'TaxComplianceStatus does not support'\
+            ' resuming a session'
+    end
+  end
+
   # A Tax return is the representation of the tax return document sent every
   # year by a person or a business to the tax authority in the country.
   class TaxReturn < Resource

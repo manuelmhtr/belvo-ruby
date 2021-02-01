@@ -75,6 +75,12 @@ module Belvo
       @invoices = Invoice.new @session
     end
 
+    # Provides access to TaxComplianceStatus resource
+    # @return [TaxComplianceStatus]
+    def tax_compliance_status
+      @tax_compliance_status = TaxComplianceStatus.new @session
+    end
+
     # Provides access to TaxReturns resource
     # @return [TaxReturn]
     def tax_returns
