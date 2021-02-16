@@ -53,7 +53,7 @@ RSpec.describe Belvo::WidgetToken do
     mock_request_widget_token_with_link_ok
     expect(
       widget_token.create(
-        options: { scopes: 'write_links', link_id: 'the-link' }
+        options: { scopes: 'write_links', link: 'the-link' }
       )
     ).to eq(token_resp.transform_keys(&:to_s))
   end

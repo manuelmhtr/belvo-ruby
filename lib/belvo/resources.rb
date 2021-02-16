@@ -455,10 +455,13 @@ module Belvo
 
     def create(options: nil)
       options = WidgetTokenOptions.from(options)
+      link_id = options.link
+      options.delete('link')
       body = {
         id: @session.key_id,
         password: @session.key_password,
-        scopes: 'read_institutions,write_links,read_links,delete_links'
+        scopes: 'read_institutions,write_links,read_links,delete_links',
+        link_id: link_id
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)
