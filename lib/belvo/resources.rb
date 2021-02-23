@@ -460,7 +460,7 @@ module Belvo
       body = {
         id: @session.key_id,
         password: @session.key_password,
-        scopes: 'read_institutions,write_links,read_links,delete_links',
+        scopes: 'read_institutions,write_links,read_links',
         link_id: link_id
       }.merge(options)
       body = clean body: body

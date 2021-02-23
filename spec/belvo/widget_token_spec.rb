@@ -19,7 +19,7 @@ RSpec.describe Belvo::WidgetToken do
       body: {
         id: 'foo',
         password: 'bar',
-        scopes: 'read_institutions,write_links,read_links,delete_links'
+        scopes: 'read_institutions,write_links,read_links'
       }
     ).to_return(
       status: 200,
