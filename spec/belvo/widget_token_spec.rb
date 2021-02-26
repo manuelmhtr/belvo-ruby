@@ -57,4 +57,35 @@ RSpec.describe Belvo::WidgetToken do
       )
     ).to eq(token_resp.transform_keys(&:to_s))
   end
+
+  def mock_request_widget_token_with_widget_brand
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/token/').with(
+      body: {
+        id: 'foo',
+        password: 'bar',
+        scopes: 'write_links',
+        link_id: 'the-link',
+        widget: { branding: { test: 'test' } }
+      }
+    ).to_return(
+      status: 200,
+      body: token_resp.to_json
+    )
+  end
+
+  it 'can create a new token with link_id and scopes and widget branding' do
+    mock_request_widget_token_with_widget_brand
+    expect(
+      widget_token.create(
+        options: {
+          scopes: 'write_links',
+          link: 'the-link',
+          widget: {
+            branding: { test: 'test' }
+          }
+        }
+      )
+    ).to eq(token_resp.transform_keys(&:to_s))
+  end
 end

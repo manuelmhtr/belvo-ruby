@@ -165,9 +165,11 @@ module Belvo
   # Contains configurable properties of a WidgetToken
   # @!attribute scopes [rw] Should have WidgetToken's permssions.
   # @!attribute link [rw] Should the WidgetToken be tied to a specific link.
+  # @!attribute widget [rw] Should have the Widget branding params.
   class WidgetTokenOptions < Faraday::Options.new(
     :scopes,
-    :link
+    :link,
+    :widget
   )
   end
 end
