@@ -4,6 +4,7 @@ require 'faraday'
 require 'faraday_middleware'
 require 'typhoeus'
 require 'typhoeus/adapters/faraday'
+require 'rack'
 
 require 'belvo/version'
 require 'belvo/exceptions'
@@ -100,7 +101,7 @@ module Belvo
         break unless response.body['next']
 
         path = response.body['next']
-        params = nil
+        params = Rack::Utils.parse_query URI(response.body['next']).query
       end
     end
 

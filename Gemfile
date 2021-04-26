@@ -8,6 +8,7 @@ gemspec
 gem 'coveralls', require: false
 gem 'faraday'
 gem 'faraday_middleware'
+gem 'rack'
 gem 'rake', '~> 12.0'
 gem 'rspec', '~> 3.0'
 gem 'rubocop', '~> 0.81.0', require: false
