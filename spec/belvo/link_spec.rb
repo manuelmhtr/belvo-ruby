@@ -171,6 +171,23 @@ RSpec.describe Belvo::Link do
     )
   end
 
+  def mock_post_link_ok_external_id
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/links/').with(
+      basic_auth: %w[foo bar],
+      body: {
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        access_mode: 'single',
+        external_id: 'abcde'
+      }
+    ).to_return(
+      status: 201,
+      body: single_link_resp.to_json
+    )
+  end
+
   it 'can list links' do
     mock_empty_links_list
     expect(links.list.length).to eq(1)
@@ -305,5 +322,20 @@ RSpec.describe Belvo::Link do
     expect(
       links.token(id: '12345', scopes: 'read_links, write_links')
     ).to eq(link_token_resp.transform_keys(&:to_s))
+  end
+
+  it 'can create a link with an external_id' do
+    mock_post_link_ok_external_id
+    expect(
+      links.register(
+        institution: 'bank',
+        username: 'janedoe',
+        password: 'secret',
+        options: {
+          access_mode: described_class::AccessMode::SINGLE,
+          external_id: 'abcde'
+        }
+      )
+    ).to eq(single_link_resp.transform_keys(&:to_s))
   end
 end

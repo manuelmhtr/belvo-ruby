@@ -21,7 +21,8 @@ module Belvo
     :encryption_key,
     :username_type,
     :certificate,
-    :private_key
+    :private_key,
+    :external_id
   )
   end
 
