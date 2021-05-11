@@ -89,6 +89,53 @@ RSpec.describe Belvo::Invoice do
     )
   end
 
+  def mock_list_with_page_one
+    mock_login_ok
+    WebMock.stub_request(:get, 'http://fake.api/api/invoices/').with(
+      basic_auth: %w[foo bar]
+    ).to_return(
+      status: 200,
+      body: {
+        count: 10,
+        next: 'http://fake.api/api/invoices/?page=2',
+        previous: nil,
+        results: [invoice_resp]
+      }.to_json
+    )
+  end
+
+  def mock_list_with_page_two
+    mock_login_ok
+    WebMock.stub_request(:get, 'http://fake.api/api/invoices/').with(
+      basic_auth: %w[foo bar],
+      query: { page: 2 }
+    ).to_return(
+      status: 200,
+      body: {
+        count: 10,
+        next: 'http://fake.api/api/invoices/?page=3',
+        previous: 'http://fake.api/api/invoices/',
+        results: [invoice_resp]
+      }.to_json
+    )
+  end
+
+  def mock_list_with_page_three
+    mock_login_ok
+    WebMock.stub_request(:get, 'http://fake.api/api/invoices/').with(
+      basic_auth: %w[foo bar],
+      query: { page: 3 }
+    ).to_return(
+      status: 200,
+      body: {
+        count: 10,
+        next: nil,
+        previous: 'http://fake.api/api/invoices/?page=2',
+        results: [invoice_resp]
+      }.to_json
+    )
+  end
+
   it 'can create' do
     mock_create_ok
     expect(
@@ -116,5 +163,15 @@ RSpec.describe Belvo::Invoice do
         }
       )
     ).to eq(invoice_resp.transform_keys(&:to_s))
+  end
+
+  it 'can list invoices with pagination' do
+    mock_list_with_page_one
+    mock_list_with_page_two
+    mock_list_with_page_three
+    expect(
+      invoices.list(params: { page: 2 })
+    ).to eq([invoice_resp.transform_keys(&:to_s),
+             invoice_resp.transform_keys(&:to_s)])
   end
 end

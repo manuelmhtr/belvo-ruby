@@ -99,8 +99,7 @@ module Belvo
 
         break unless response.body['next']
 
-        path = response.body['next']
-        params = nil
+        params = Faraday::Utils.parse_query URI(response.body['next']).query
       end
     end
 
