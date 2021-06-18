@@ -188,6 +188,19 @@ RSpec.describe Belvo::Link do
     )
   end
 
+  def mock_patch_link_access_mode
+    mock_login_ok
+    WebMock.stub_request(:patch, 'http://fake.api/api/links/some-id/').with(
+      basic_auth: %w[foo bar],
+      body: {
+        access_mode: 'single'
+      }
+    ).to_return(
+      status: 200,
+      body: single_link_resp.to_json
+    )
+  end
+
   it 'can list links' do
     mock_empty_links_list
     expect(links.list.length).to eq(1)
@@ -334,6 +347,18 @@ RSpec.describe Belvo::Link do
         options: {
           access_mode: described_class::AccessMode::SINGLE,
           external_id: 'abcde'
+        }
+      )
+    ).to eq(single_link_resp.transform_keys(&:to_s))
+  end
+
+  it 'can patch a link with access_mode' do
+    mock_patch_link_access_mode
+    expect(
+      links.patch(
+        id: 'some-id',
+        options: {
+          access_mode: described_class::AccessMode::SINGLE
         }
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))

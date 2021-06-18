@@ -134,6 +134,24 @@ module Belvo
       }
       @session.token(@endpoint, id, body)
     end
+
+    # Patch an existing link
+    # @param id [String] Link UUID
+    # @param options [LinkOptions] Configurable properties
+    # @return [Hash] created link details
+    # @raise [RequestError] If response code is different than 2XX
+    def patch(
+      id:,
+      options: nil
+    )
+      options = LinkOptions.from(options)
+      body = {
+        access_mode: options.access_mode
+      }.merge(options)
+      body = clean body: body
+      resource_path = format('%<path>s%<id>s/', path: @endpoint, id: id)
+      @session.patch(resource_path, body)
+    end
   end
 
   # An Account is the representation of a bank account inside a financial

@@ -1,3 +1,4 @@
+# rubocop:disable all
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
@@ -15,3 +16,4 @@ gem 'rubocop-rspec', require: false
 gem 'typhoeus'
 gem 'danger', '8.2.1'
 gem 'webmock'
+# rubocop:enable all

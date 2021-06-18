@@ -1,3 +1,4 @@
+# rubocop:disable all
 # Mainly to encourage writing up some reasoning about the PR, rather than
 # just leaving a title
 fail "Please provide a short summary in the PR description :page_with_curl:" if github.pr_body.length < 10
@@ -17,3 +18,4 @@ end
 warn("PR is classed as Work in Progress", sticky: false) if github.pr_title.include? "[WIP]"
 
 message("One approval required for merging :smiley_cat: :smiley_cat:")
+# rubocop:enable all
