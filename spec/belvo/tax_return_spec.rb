@@ -30,6 +30,23 @@ RSpec.describe Belvo::TaxReturn do
     )
   end
 
+  def mock_create_with_dates
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/tax-returns/').with(
+      basic_auth: %w[foo bar],
+      body: {
+        link: 'some-link-uuid',
+        date_from: '2021-01-01',
+        date_to: '2021-01-03',
+        save_data: true,
+        type: 'monthly'
+      }
+    ).to_return(
+      status: 201,
+      body: tax_return_resp.to_json
+    )
+  end
+
   def mock_create_with_options
     mock_login_ok
     WebMock.stub_request(:post, 'http://fake.api/api/tax-returns/').with(
@@ -70,6 +87,20 @@ RSpec.describe Belvo::TaxReturn do
           token: 'a-token',
           save_data: false,
           attach_pdf: true
+        }
+      )
+    ).to eq(tax_return_resp.transform_keys(&:to_s))
+  end
+
+  it 'can create with dates' do
+    mock_create_with_dates
+    expect(
+      tax_returns.retrieve(
+        link: 'some-link-uuid',
+        year_from: '2021-01-01',
+        year_to: '2021-01-03',
+        options: {
+          type: described_class::TaxReturnType::MONTHLY
         }
       )
     ).to eq(tax_return_resp.transform_keys(&:to_s))

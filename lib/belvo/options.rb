@@ -144,7 +144,8 @@ module Belvo
     :token,
     :encryption_key,
     :save_data,
-    :attach_pdf
+    :attach_pdf,
+    :type
   )
   end
 

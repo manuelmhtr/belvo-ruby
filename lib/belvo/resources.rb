@@ -395,24 +395,35 @@ module Belvo
       @endpoint = 'tax-returns/'
     end
 
+    class TaxReturnType
+      YEARLY = 'yearly'
+      MONTHLY = 'monthly'
+    end
+
     # Retrieve tax returns information from a specific fiscal link.
     # @param link [String] Link UUID
-    # @param year_from [Integer]
-    # @param year_to [Integer]
+    # @param year_from [Integer] | [Date]
+    # @param year_to [Integer] | [Date]
     # @param options [TaxReturnOptions] Configurable properties
     # @return [Hash] created tax returns details
     # @raise [RequestError] If response code is different than 2XX
-    def retrieve(link:, year_from:, year_to:, options: nil)
+    def retrieve(link:, year_from: nil, year_to: nil, options: nil)
       options = TaxReturnOptions.from(options)
       body = {
         link: link,
-        year_from: year_from,
-        year_to: year_to,
         token: options.token,
         encryption_key: options.encryption_key,
         save_data: options.save_data || true,
-        attach_pdf: options.attach_pdf
+        attach_pdf: options.attach_pdf,
+        type: options.type
       }.merge(options)
+      if options.type == TaxReturnType::MONTHLY
+        body[:date_from] = year_from
+        body[:date_to] = year_to
+      else
+        body[:year_from] = year_from
+        body[:year_to] = year_to
+      end
       body = clean body: body
       @session.post(@endpoint, body)
     end
