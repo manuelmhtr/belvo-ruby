@@ -97,10 +97,10 @@ RSpec.describe Belvo::TaxReturn do
     expect(
       tax_returns.retrieve(
         link: 'some-link-uuid',
-        year_from: '2021-01-01',
-        year_to: '2021-01-03',
         options: {
-          type: described_class::TaxReturnType::MONTHLY
+          type: described_class::TaxReturnType::MONTHLY,
+          date_from: '2021-01-01',
+          date_to: '2021-01-03'
         }
       )
     ).to eq(tax_return_resp.transform_keys(&:to_s))

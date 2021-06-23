@@ -402,8 +402,8 @@ module Belvo
 
     # Retrieve tax returns information from a specific fiscal link.
     # @param link [String] Link UUID
-    # @param year_from [Integer] | [Date]
-    # @param year_to [Integer] | [Date]
+    # @param year_from [Integer]
+    # @param year_to [Integer]
     # @param options [TaxReturnOptions] Configurable properties
     # @return [Hash] created tax returns details
     # @raise [RequestError] If response code is different than 2XX
@@ -418,8 +418,8 @@ module Belvo
         type: options.type
       }.merge(options)
       if options.type == TaxReturnType::MONTHLY
-        body[:date_from] = year_from
-        body[:date_to] = year_to
+        body[:date_from] = options.date_from
+        body[:date_to] = options.date_to
       else
         body[:year_from] = year_from
         body[:year_to] = year_to

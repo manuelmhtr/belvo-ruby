@@ -145,7 +145,9 @@ module Belvo
     :encryption_key,
     :save_data,
     :attach_pdf,
-    :type
+    :type,
+    :date_from,
+    :date_to
   )
   end
 
