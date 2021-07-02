@@ -2,9 +2,10 @@
 
 RSpec.describe Belvo::Client do
   it 'raises error when no url given' do
+    message = 'You need to provide a URL or a valid environment.'
     expect do
       described_class.new('fake_id', 'fake_secret')
-    end.to raise_error(Belvo::BelvoAPIError, 'You need to provide a URL.')
+    end.to raise_error(Belvo::BelvoAPIError, message)
   end
 
   it 'raises error when wrong credentials' do
@@ -24,5 +25,32 @@ RSpec.describe Belvo::Client do
     expect do
       described_class.new('foo', 'bar', 'http://fake.api')
     end.not_to raise_error
+  end
+
+  [
+    %w[sandbox https://sandbox.belvo.com],
+    %w[development https://development.belvo.com],
+    %w[production https://api.belvo.com]
+  ].each do |env|
+    it 'given an environment the session should have the correct API URL' do
+      name = env[0]
+      url = format('%<url>s/api/', url: env[1])
+
+      WebMock.stub_request(:get, url).to_return(status: 200)
+
+      client = described_class.new('key-id', 'key-password', name)
+      expect(client.session.instance_variable_get(:@url)).to eq(url)
+    end
+  end
+
+  it 'given an URL the session should have the same one' do
+    url = 'https://sandbox.belvo.com'
+
+    WebMock.stub_request(
+      :get, format('%<url>s/api/', url: url)
+    ).to_return(status: 200)
+
+    client = described_class.new('key-id', 'key-password', url)
+    expect(client.session.instance_variable_get(:@url)).to eq('https://sandbox.belvo.com/api/')
   end
 end

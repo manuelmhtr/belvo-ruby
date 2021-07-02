@@ -3,6 +3,7 @@
 require 'belvo/http'
 require 'belvo/exceptions'
 require 'belvo/resources'
+require 'belvo/utils'
 
 module Belvo
   # Allows easy access to Belvo API servers.
@@ -18,7 +19,11 @@ module Belvo
     # @return [APISession] Authenticated Belvo API session
     def initialize(secret_key_id, secret_key_password, url = nil)
       (belvo_api_url = url) || ENV['BELVO_API_URL']
-      raise BelvoAPIError, 'You need to provide a URL.' if belvo_api_url.nil?
+      belvo_api_url = Environment.get_url(belvo_api_url)
+
+      if belvo_api_url.nil?
+        raise BelvoAPIError, 'You need to provide a URL or a valid environment.'
+      end
 
       @session = Belvo::APISession.new(belvo_api_url)
 
