@@ -41,7 +41,7 @@ require 'belvo'
 belvo = Belvo::Client.new(
   'af6e69ff-43fa-4e10-8d90-3d217309a1e5',
   'gdi64m68Lc6xUjIKN3aJF2fZd51wD36lTjGVyJO5xQBfL7PRsgFef-ADXBxIhUnd',
-  'https://sandbox.belvo.com'
+  'sandbox'
 )
 
 begin
