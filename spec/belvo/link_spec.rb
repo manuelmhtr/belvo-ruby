@@ -156,7 +156,7 @@ RSpec.describe Belvo::Link do
     )
   end
 
-  def mock_put_encryption_key_ok
+  def mock_put_link_ok
     mock_login_ok
     WebMock.stub_request(:put, 'http://fake.api/api/links/some-id/').with(
       basic_auth: %w[foo bar]
@@ -165,8 +165,7 @@ RSpec.describe Belvo::Link do
       body: { id: 'some-id', access_mode: 'single', status: 'valid' }.to_json
     ).with(
       body: {
-        password: 'secret',
-        encryption_key: 'this-is-so-secret'
+        password: 'secret'
       }
     )
   end
@@ -308,12 +307,11 @@ RSpec.describe Belvo::Link do
   end
 
   it 'can update an existing link' do
-    mock_put_encryption_key_ok
+    mock_put_link_ok
     expect(
       links.update(
         id: 'some-id',
-        password: 'secret',
-        options: { encryption_key: 'this-is-so-secret' }
+        password: 'secret'
       )
     ).to eq(single_link_resp.transform_keys(&:to_s))
   end

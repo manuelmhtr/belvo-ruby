@@ -99,7 +99,7 @@ module Belvo
       @session.post(@endpoint, body)
     end
 
-    # Allows to change password, password2 or setting a custom encryption key
+    # Allows to change password, password2
     # @param id [String] Link UUID
     # @param password [String] End-user password
     # @param password2 [String, nil] End-user secondary password, if any
@@ -114,7 +114,6 @@ module Belvo
         password: password,
         password2: password2,
         token: options.token,
-        encryption_key: options.encryption_key,
         username_type: options.username_type,
         certificate: options.certificate,
         private_key: options.private_key
@@ -172,7 +171,6 @@ module Belvo
       body = {
         link: link,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true
       }.merge(options)
       body = clean body: body
@@ -203,7 +201,6 @@ module Belvo
         date_to: date_to,
         token: options.token,
         account: options.account,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true
       }.merge(options)
       body = clean body: body
@@ -229,7 +226,6 @@ module Belvo
       body = {
         link: link,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true
       }.merge(options)
       body = clean body: body
@@ -260,7 +256,6 @@ module Belvo
         date_to: date_to,
         token: options.token,
         account: options.account,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true
       }.merge(options)
       body = clean body: body
@@ -290,7 +285,6 @@ module Belvo
         year: year,
         month: month,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true,
         attach_pdf: options.attach_pdf
       }.merge(options)
@@ -315,7 +309,6 @@ module Belvo
       options = IncomeOptions.from(options)
       body = {
         link: link,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true
       }.merge(options)
       body = clean body: body
@@ -346,7 +339,6 @@ module Belvo
         date_to: date_to,
         type: type,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true,
         attach_xml: options.attach_xml
       }.merge(options)
@@ -373,7 +365,6 @@ module Belvo
       body = {
         link: link,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true,
         attach_pdf: options.attach_pdf
       }.merge(options)
@@ -412,7 +403,6 @@ module Belvo
       body = {
         link: link,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true,
         attach_pdf: options.attach_pdf,
         type: options.type
@@ -451,7 +441,6 @@ module Belvo
       body = {
         link: link,
         token: options.token,
-        encryption_key: options.encryption_key,
         save_data: options.save_data || true,
         attach_pdf: options.attach_pdf
       }.merge(options)
