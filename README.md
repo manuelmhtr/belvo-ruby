@@ -33,31 +33,60 @@ Or install it yourself as:
 
     $ gem install belvo
 
-## Usage
+## Usage (create link via widget)
+
+When your user successfully links their account using the [Connect Widget](https://developers.belvo.com/docs/connect-widget), your implemented callback funciton will return the `link_id` required to make further API to retrieve information.
+
 
 ```ruby
 require 'belvo'
 
 belvo = Belvo::Client.new(
-  'af6e69ff-43fa-4e10-8d90-3d217309a1e5',
-  'gdi64m68Lc6xUjIKN3aJF2fZd51wD36lTjGVyJO5xQBfL7PRsgFef-ADXBxIhUnd',
+  'your-secret-id',
+  'your-secret-password',
   'sandbox'
 )
 
 begin
-  new_link = belvo.links.register(
-    institution: 'banamex_mx_retail', 
-    username: 'janedoe', 
-    password: 'super-secret',
-    options: { access_mode: Belvo::Link::AccessMode::SINGLE }
-  )
+    # Get the link_id from the result of your widget callback function
+    link_id = result_from_callback_function.id 
+    
+    belvo.accounts.retrieve(link: link_id)
 
-  belvo.accounts.retrieve(link: new_link['id'])
-
-  puts belvo.accounts.list
+    puts belvo.accounts.list
 rescue Belvo::RequestError => e
-  puts e.status_code
-  puts e.detail
+    puts e.status_code
+    puts e.detail
+end
+```
+
+## Usage (create link via SDK)
+
+You can also manually create the link using the SDK. However, for security purposes, we highly recommend, that you use the [Connect Widget](https://developers.belvo.com/docs/connect-widget) to create the link and follow the **Usage (create link via widget)** example.
+
+```ruby
+require 'belvo'
+
+belvo = Belvo::Client.new(
+  'your-secret-id',
+  'your-secret-password',
+  'sandbox'
+)
+
+begin
+    new_link = belvo.links.register( # Creating the link
+        institution: 'banamex_mx_retail', 
+        username: 'janedoe', 
+        password: 'super-secret',
+        options: { access_mode: Belvo::Link::AccessMode::SINGLE }
+        )
+    
+    belvo.accounts.retrieve(link: new_link['id'])
+
+    puts belvo.accounts.list
+rescue Belvo::RequestError => e
+    puts e.status_code
+    puts e.detail
 end
 ```
 
