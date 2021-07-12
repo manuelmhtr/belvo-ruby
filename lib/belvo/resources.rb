@@ -2,7 +2,7 @@
 
 require 'date'
 require 'belvo/options'
-require 'belvo/utils'
+require 'belvo/belvo_utils'
 
 module Belvo
   # Represents a consumable REST resource from Belvo API

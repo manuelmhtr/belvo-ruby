@@ -3,7 +3,7 @@
 require 'belvo/http'
 require 'belvo/exceptions'
 require 'belvo/resources'
-require 'belvo/utils'
+require 'belvo/belvo_utils'
 
 module Belvo
   # Allows easy access to Belvo API servers.
