@@ -11,7 +11,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
         with:
-          fetch-depth: 1
+          fetch-depth: 10
 
       # Setup ruby
       - name: Set up Ruby 2.6
