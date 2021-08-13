@@ -85,8 +85,12 @@ module Belvo
   # @!class IncomeOptions < Faraday::Options
   # Contains configurable properties of an Income
   # @!attribute save_data [rw] Should data be persisted or not.
+  # @!attribute date_from [rw] Date string (YYYY-MM-DD)
+  # @!attribute date_to [rw] Date string (YYYY-MM-DD)
   class IncomeOptions < Faraday::Options.new(
-    :save_data
+    :save_data,
+    :date_from,
+    :date_to
   )
   end
 

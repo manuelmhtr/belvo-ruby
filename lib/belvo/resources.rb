@@ -309,7 +309,9 @@ module Belvo
       options = IncomeOptions.from(options)
       body = {
         link: link,
-        save_data: options.save_data || true
+        save_data: options.save_data || true,
+        date_from: options.date_from,
+        date_to: options.date_to
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)

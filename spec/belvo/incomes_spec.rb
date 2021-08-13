@@ -47,6 +47,22 @@ RSpec.describe Belvo::Income do
     )
   end
 
+  def mock_create_with_dates
+    mock_login_ok
+    WebMock.stub_request(:post, 'http://fake.api/api/incomes/').with(
+      basic_auth: %w[foo bar],
+      body: {
+        link: 'some-link-uuid',
+        date_from: '2021-01-01',
+        date_to: '2021-01-02',
+        save_data: true
+      }
+    ).to_return(
+      status: 201,
+      body: income_resp.to_json
+    )
+  end
+
   def mock_create_with_options
     mock_login_ok
     WebMock.stub_request(:post, 'http://fake.api/api/incomes/').with(
