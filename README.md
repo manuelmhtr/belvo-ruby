@@ -75,7 +75,7 @@ belvo = Belvo::Client.new(
 
 begin
     new_link = belvo.links.register( # Creating the link
-        institution: 'banamex_mx_retail', 
+        institution: 'erebor_mx_retail', 
         username: 'janedoe', 
         password: 'super-secret',
         options: { access_mode: Belvo::Link::AccessMode::SINGLE }
