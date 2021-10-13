@@ -28,7 +28,7 @@ RSpec.configure do |config|
   end
 
   def mock_login_ok
-    WebMock.stub_request(:get, 'http://fake.api/').with(
+    WebMock.stub_request(:get, 'http://fake.api/api/').with(
       basic_auth: %w[foo bar]
     ).to_return(status: 200)
   end

@@ -41,7 +41,7 @@ module Belvo
         raise RequestError.new(
           'Request error',
           response.status,
-          response.body.to_s
+          response.body
         )
       end
       response
@@ -52,7 +52,7 @@ module Belvo
     #   to Belvo API else False.
     def authenticate
       @session.basic_auth(@key_id, @key_password)
-      response = @session.get('')
+      response = @session.get('api/')
       response.success?
     end
 
@@ -113,7 +113,7 @@ module Belvo
       params = {} if params.nil?
 
       resource_path = format('%<path>s%<id>s/', path: path, id: id)
-      response = get(resource_path, params)
+      response = get(resource_path, **params)
 
       raise_for_status response
       response.body
