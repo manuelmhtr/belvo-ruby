@@ -349,6 +349,30 @@ module Belvo
     end
   end
 
+  # Recurring Expenses contain a resume of one year
+  # of Transactions inside an Account.
+  class RecurringExpenses < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'recurring-expenses/'
+    end
+
+    # Retrieve recurring expenses information from a specific banking link
+    # @param link [String] Link UUID
+    # @param options [RecurringExpensesOptions] Configurable properties
+    # @return [Hash] created incomes details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = RecurringExpensesOptions.from(options)
+      body = {
+        link: link,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
   # A Tax compliance status is the representation of the tax situation
   # of a person or a business to the tax authority in the country.
   class TaxComplianceStatus < Resource

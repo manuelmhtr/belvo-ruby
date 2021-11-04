@@ -80,6 +80,12 @@ module Belvo
       @invoices = Invoice.new @session
     end
 
+    # Provides access to RecurringExpenses resource
+    # @return [RecurringExpense]
+    def recurring_expenses
+      @recurring_expenses = RecurringExpenses.new @session
+    end
+
     # Provides access to TaxComplianceStatus resource
     # @return [TaxComplianceStatus]
     def tax_compliance_status

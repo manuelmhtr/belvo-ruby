@@ -107,6 +107,14 @@ module Belvo
   )
   end
 
+  # @!class RecurringExpensesOptions < Faraday::Options
+  # Contains configurable properties of a Recurring Expense
+  # @!attribute save_data [rw] Should data be persisted or not.
+  class RecurringExpensesOptions < Faraday::Options.new(
+    :save_data
+  )
+  end
+
   # @!class TaxComplianceStatusOptions < Faraday::Options
   # Contains configurable properties of a TaxComplianceStatus
   # @!attribute save_data [rw] Should data be persisted or not.
