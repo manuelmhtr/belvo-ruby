@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday_middleware'
   spec.add_dependency 'typhoeus'
 
-  spec.add_development_dependency 'coveralls'
+  spec.add_development_dependency 'coveralls_reborn'
   spec.add_development_dependency 'rake', '~> 12.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 0.81.0'

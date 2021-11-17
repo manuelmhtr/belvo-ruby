@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in belvo.gemspec
 gemspec
 
-gem 'coveralls', require: false
+gem 'coveralls_reborn', require: false
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'rake', '~> 12.0'

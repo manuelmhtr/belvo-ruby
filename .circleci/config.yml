@@ -1,0 +1,47 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.0.4
+jobs:
+  test:
+    docker:
+      - image: cimg/ruby:2.7
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          name: Install deps
+          command: gem install bundler -v 2.1.4
+      - run:
+          name: Run tests
+          command: |
+            bundle exec rubocop
+            bundle exec rspec spec
+  deploy-to-rubygems:
+    docker:
+      - image: cimg/ruby:2.7
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          name: Publish gem to Rubygems
+          command: bundle exec rake release
+
+workflows:
+  build-test-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /v.*/
+          context:
+            - shared
+      - deploy-to-rubygems:
+          requires:
+            - test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+          context:
+            - shared
