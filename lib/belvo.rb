@@ -86,6 +86,12 @@ module Belvo
       @recurring_expenses = RecurringExpenses.new @session
     end
 
+    # Provides access to RiskInsights resource
+    # @return [RiskInsights]
+    def risk_insights
+      @risk_insights = RiskInsights.new @session
+    end
+
     # Provides access to TaxComplianceStatus resource
     # @return [TaxComplianceStatus]
     def tax_compliance_status

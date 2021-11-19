@@ -360,10 +360,34 @@ module Belvo
     # Retrieve recurring expenses information from a specific banking link
     # @param link [String] Link UUID
     # @param options [RecurringExpensesOptions] Configurable properties
-    # @return [Hash] created incomes details
+    # @return [Hash] created RecurringExpenses details
     # @raise [RequestError] If response code is different than 2XX
     def retrieve(link:, options: nil)
       options = RecurringExpensesOptions.from(options)
+      body = {
+        link: link,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
+  # RiskInsights contain relevant metrics about
+  # the credit risk of a Link
+  class RiskInsights < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'risk-insights/'
+    end
+
+    # Retrieve risk insights information from a specific banking link
+    # @param link [String] Link UUID
+    # @param options [RiskInsightsOptions] Configurable properties
+    # @return [Hash] created RiskInsights details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = RiskInsightsOptions.from(options)
       body = {
         link: link,
         save_data: options.save_data || true
