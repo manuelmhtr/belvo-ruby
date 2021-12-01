@@ -22,23 +22,15 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps
-      - when:
-          condition:
-            and:
-              - equal: [ master, << pipeline.git.branch >> ]
-              - matches:
-                  pattern: "^v.*"
-                  value: << pipeline.git.tag >>
-          steps:
-            - run:
-                name: Set Rubygems credentials
-                command: |
-                  mkdir ~/.gem
-                  echo -e "---\r\n:rubygems_api_key: $GEM_HOST_API_KEY" > ~/.gem/credentials
-                  chmod 0600 /home/circleci/.gem/credentials
-            - run:
-                name: Publish gem to Rubygems
-                command: bundle exec rake release
+      - run:
+          name: Set Rubygems credentials
+          command: |
+            mkdir ~/.gem
+            echo -e "---\r\n:rubygems_api_key: $GEM_HOST_API_KEY" > ~/.gem/credentials
+            chmod 0600 /home/circleci/.gem/credentials
+      - run:
+          name: Publish gem to Rubygems
+          command: bundle exec rake release
 
 workflows:
   build-test-deploy:
