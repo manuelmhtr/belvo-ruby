@@ -17,7 +17,7 @@ module Belvo
     # @param url [String] Belvo API host url
     # @return [Faraday::Connection]
     def initialize(url)
-      @url = format('%<url>s/api/', url: url)
+      @url = format('%<url>s/', url: url)
       @session = Faraday::Connection.new(url: @url) do |faraday|
         faraday.adapter :typhoeus
         faraday.response :json

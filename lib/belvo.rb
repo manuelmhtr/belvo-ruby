@@ -121,5 +121,17 @@ module Belvo
     def widget_token
       @widget_token = WidgetToken.new @session
     end
+
+    # Provides access to InvestmentsPortfolio resource
+    # @return [InvestmentsPortfolio]
+    def investments_portfolio
+      @investments_portfolio = InvestmentsPortfolio.new @session
+    end
+
+    # Provides access to InvestmentsTransaction resource
+    # @return [InvestmentsTransaction]
+    def investments_transaction
+      @investments_transaction = InvestmentsTransaction.new @session
+    end
   end
 end

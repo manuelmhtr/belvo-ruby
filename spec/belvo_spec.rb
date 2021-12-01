@@ -68,5 +68,13 @@ RSpec.describe Belvo do
     it 'has an widget_token attribute' do
       expect(client.widget_token).not_to be nil
     end
+
+    it 'has an investments_portfolio attribute' do
+      expect(client.investments_portfolio).not_to be nil
+    end
+
+    it 'has an investments_transaction attribute' do
+      expect(client.investments_transaction).not_to be nil
+    end
   end
 end

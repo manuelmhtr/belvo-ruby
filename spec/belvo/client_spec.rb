@@ -9,7 +9,7 @@ RSpec.describe Belvo::Client do
   end
 
   it 'raises error when wrong credentials' do
-    WebMock.stub_request(:get, 'http://fake.api/api/').with(
+    WebMock.stub_request(:get, 'http://fake.api/').with(
       basic_auth: %w[foo bar]
     ).to_return(status: [401, 'Unauthorized'])
     expect do
@@ -18,7 +18,7 @@ RSpec.describe Belvo::Client do
   end
 
   it 'can login when credentials are correct' do
-    WebMock.stub_request(:get, 'http://fake.api/api/').with(
+    WebMock.stub_request(:get, 'http://fake.api/').with(
       basic_auth: %w[foo bar]
     ).to_return(status: 200)
 
@@ -34,7 +34,7 @@ RSpec.describe Belvo::Client do
   ].each do |env|
     it 'given an environment the session should have the correct API URL' do
       name = env[0]
-      url = format('%<url>s/api/', url: env[1])
+      url = format('%<url>s/', url: env[1])
 
       WebMock.stub_request(:get, url).to_return(status: 200)
 
@@ -47,10 +47,10 @@ RSpec.describe Belvo::Client do
     url = 'https://sandbox.belvo.com'
 
     WebMock.stub_request(
-      :get, format('%<url>s/api/', url: url)
+      :get, format('%<url>s/', url: url)
     ).to_return(status: 200)
 
     client = described_class.new('key-id', 'key-password', url)
-    expect(client.session.instance_variable_get(:@url)).to eq('https://sandbox.belvo.com/api/')
+    expect(client.session.instance_variable_get(:@url)).to eq('https://sandbox.belvo.com/')
   end
 end

@@ -70,7 +70,7 @@ module Belvo
 
     def initialize(session)
       super(session)
-      @endpoint = 'links/'
+      @endpoint = 'api/links/'
     end
 
     # Register a new link
@@ -158,7 +158,7 @@ module Belvo
   class Account < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'accounts/'
+      @endpoint = 'api/accounts/'
     end
 
     # Retrieve accounts from an existing link
@@ -183,7 +183,7 @@ module Belvo
   class Transaction < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'transactions/'
+      @endpoint = 'api/transactions/'
     end
 
     # Retrieve transactions from an existing link
@@ -213,7 +213,7 @@ module Belvo
   class Owner < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'owners/'
+      @endpoint = 'api/owners/'
     end
 
     # Retrieve owners from an existing link
@@ -237,7 +237,7 @@ module Belvo
   class Balance < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'balances/'
+      @endpoint = 'api/balances/'
     end
 
     # Retrieve balances from a specific account or all accounts from a
@@ -267,7 +267,7 @@ module Belvo
   class Statement < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'statements/'
+      @endpoint = 'api/statements/'
     end
 
     # Retrieve statements information from a specific banking link.
@@ -297,7 +297,7 @@ module Belvo
   class Income < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'incomes/'
+      @endpoint = 'api/incomes/'
     end
 
     # Retrieve incomes information from a specific banking link.
@@ -324,7 +324,7 @@ module Belvo
   class Invoice < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'invoices/'
+      @endpoint = 'api/invoices/'
     end
 
     # @param link [String] Link UUID
@@ -354,7 +354,7 @@ module Belvo
   class RecurringExpenses < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'recurring-expenses/'
+      @endpoint = 'api/recurring-expenses/'
     end
 
     # Retrieve recurring expenses information from a specific banking link
@@ -378,7 +378,7 @@ module Belvo
   class RiskInsights < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'risk-insights/'
+      @endpoint = 'api/risk-insights/'
     end
 
     # Retrieve risk insights information from a specific banking link
@@ -402,7 +402,7 @@ module Belvo
   class TaxComplianceStatus < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'tax-compliance-status/'
+      @endpoint = 'api/tax-compliance-status/'
     end
 
     # Retrieve tax compliance status information from a specific fiscal link.
@@ -433,7 +433,7 @@ module Belvo
   class TaxReturn < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'tax-returns/'
+      @endpoint = 'api/tax-returns/'
     end
 
     class TaxReturnType
@@ -478,7 +478,7 @@ module Belvo
   class TaxStatus < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'tax-status/'
+      @endpoint = 'api/tax-status/'
     end
 
     # Retrieve tax status information from a specific fiscal link.
@@ -508,7 +508,7 @@ module Belvo
   class Institution < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'institutions/'
+      @endpoint = 'api/institutions/'
     end
   end
 
@@ -518,7 +518,7 @@ module Belvo
   class WidgetToken < Resource
     def initialize(session)
       super(session)
-      @endpoint = 'token/'
+      @endpoint = 'api/token/'
     end
 
     def create(options: nil)
@@ -533,6 +533,59 @@ module Belvo
         scopes: 'read_institutions,write_links,read_links',
         link_id: link_id,
         widget: widget
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
+  # A InvestmentsPortfolio is a comprehensive view of your user's current
+  # investment holdings
+  class InvestmentsPortfolio < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'investments/portfolios/'
+    end
+
+    # Retrieve investments portfolios from an existing link
+    # @param link [String] Link UUID
+    # @param options [InvestmentsPortfolioOptions] Configurable properties
+    # @return [Hash] created investments portfolios details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, options: nil)
+      options = InvestmentsPortfolioOptions.from(options)
+      body = {
+        link: link,
+        token: options.token,
+        save_data: options.save_data || true
+      }.merge(options)
+      body = clean body: body
+      @session.post(@endpoint, body)
+    end
+  end
+
+  # A InvestmentsTransaction gets the existing transactions for an instrument
+  class InvestmentsTransaction < Resource
+    def initialize(session)
+      super(session)
+      @endpoint = 'investments/transactions/'
+    end
+
+    # Retrieve investments transactions from an existing link
+    # @param link [String] Link UUID
+    # @param date_from [String] Date string (YYYY-MM-DD)
+    # @param options [InvestmentsTransactionOptions] Configurable properties
+    # @return [Hash] created investments transactions details
+    # @raise [RequestError] If response code is different than 2XX
+    def retrieve(link:, date_from:, options: nil)
+      options = InvestmentsTransactionOptions.from(options)
+      date_to = options.date_to || Date.today.to_s
+      body = {
+        link: link,
+        date_from: date_from,
+        date_to: date_to,
+        token: options.token,
+        save_data: options.save_data || true
       }.merge(options)
       body = clean body: body
       @session.post(@endpoint, body)

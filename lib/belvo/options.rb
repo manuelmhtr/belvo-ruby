@@ -175,4 +175,23 @@ module Belvo
     :widget
   )
   end
+
+  # @!class InvestmentsPortfolioOptions < Faraday::Options
+  # Contains configurable properties of an InvestmentsPortfolio
+  # @!attribute save_data [rw] Should data be persisted or not.
+  # @!attribute token [rw] OTP token required by the institution
+  class InvestmentsPortfolioOptions < Faraday::Options.new(:token, :save_data)
+  end
+
+  # @!class InvestmentsTransactionOptions < Faraday::Options
+  # Contains configurable properties of an InvestmentsTransaction
+  # @!attribute date_to [rw] Date string (YYYY-MM-DD)
+  # @!attribute save_data [rw] Should data be persisted or not.
+  # @!attribute token [rw] OTP token required by the institution
+  class InvestmentsTransactionOptions < Faraday::Options.new(
+    :date_to,
+    :token,
+    :save_data
+  )
+  end
 end
